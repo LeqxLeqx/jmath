@@ -13,6 +13,7 @@ public class Matrix extends IMatrix{
           ;
 
   public static Matrix rotation(double phi, double theta, double psi) {
+    /*
     return new Matrix(
             JMath.cos(theta) * JMath.cos(psi),
             - JMath.cos(phi) * JMath.sin(psi) - JMath.sin(phi) * JMath.sin(theta) * JMath.cos(psi),
@@ -25,6 +26,37 @@ public class Matrix extends IMatrix{
             - JMath.sin(theta),
             JMath.sin(phi) * JMath.cos(theta),
             JMath.cos(phi) * JMath.cos(theta)
+    );
+    */
+
+    Matrix
+            rx = xRotation(phi),
+            ry = yRotation(theta),
+            rz = zRotation(psi)
+                    ;
+
+    return rx.multiply(ry).multiply(rz);
+  }
+
+  public static Matrix xRotation(double theta) {
+    return new Matrix(
+            1, 0, 0,
+            0, JMath.cos(theta), -JMath.sin(theta),
+            0, JMath.sin(theta), JMath.cos(theta)
+      );
+  }
+  public static Matrix yRotation(double theta) {
+    return new Matrix(
+            JMath.cos(theta), 0, JMath.sin(theta),
+            0, 1, 0,
+            -JMath.sin(theta), 0, JMath.cos(theta)
+      );
+  }
+  public static Matrix zRotation(double theta) {
+    return new Matrix(
+            JMath.cos(theta), -JMath.sin(theta), 0,
+            JMath.sin(theta), JMath.cos(theta), 0,
+            0, 0, 1
     );
   }
 

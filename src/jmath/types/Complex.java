@@ -8,6 +8,7 @@ import jmath.JMath;
 public class Complex extends MObject {
 
   public static final Complex
+                  ZERO = new Complex(0, 0),
                   I = new Complex(0, 1),
                   ONE = new Complex(1, 0)
                   ;

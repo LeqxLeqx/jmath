@@ -1812,6 +1812,202 @@ public /*static*/ class JMath { private JMath() {}
 
   // Misc
 
+  public static double average(double... values) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+
+    double total = 0;
+    for(double v : values) {
+      total += v;
+    }
+
+    return total / values.length;
+  }
+  public static Complex average(Complex... values) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+    if (Arrays.asList(values).contains(null))
+      throw new IllegalArgumentException("Values array cannot contain nulls");
+
+    return Complex.add(values).div(Complex.real(values.length));
+  }
+  public static Fixed average(Fixed... values) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+    if (Arrays.asList(values).contains(null))
+      throw new IllegalArgumentException("Values array cannot contain nulls");
+
+    return Fixed.add(values).div(new Fixed(values.length));
+  }
+  public static Vector average(Vector... values) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+    if (Arrays.asList(values).contains(null))
+      throw new IllegalArgumentException("Values array cannot contain nulls");
+
+    return Vector.add(values).scale(1.0 / values.length);
+  }
+
+  public static double weightedAverage(double[] values, double[] weight) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+    if (weight == null)
+      throw new IllegalArgumentException("Weight array cannot be null");
+    if (values.length != weight.length)
+      throw new IllegalArgumentException(String.format("Array length mismatch (%d != %d)", values.length, weight.length));
+
+    double weightTotal = cumSum(weight);
+    double ret = 0;
+    for(int k = 0; k < values.length; k++) {
+      ret += values[k] * weight[k] / weightTotal;
+    }
+
+    return ret;
+  }
+  public static Complex weightedAverage(Complex[] values, double[] weight) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+    if (weight == null)
+      throw new IllegalArgumentException("Weight array cannot be null");
+    if (Arrays.asList(values).contains(null))
+      throw new IllegalArgumentException("Values array cannot contain nulls");
+    if (values.length != weight.length)
+      throw new IllegalArgumentException(String.format("Array length mismatch (%d != %d)", values.length, weight.length));
+
+    double weightTotal = cumSum(weight);
+    Complex ret = Complex.ZERO;
+    for(int k = 0; k < values.length; k++) {
+      ret = Complex.add(ret, Complex.multiply(values[k], Complex.real(weight[k])).div(Complex.real(weightTotal)));
+    }
+
+    return ret;
+  }
+  public static Fixed weightedAverage(Fixed[] values, double[] weight) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+    if (weight == null)
+      throw new IllegalArgumentException("Weight array cannot be null");
+    if (Arrays.asList(values).contains(null))
+      throw new IllegalArgumentException("Values array cannot contain nulls");
+    if (values.length != weight.length)
+      throw new IllegalArgumentException(String.format("Array length mismatch (%d != %d)", values.length, weight.length));
+
+    double weightTotal = cumSum(weight);
+    Fixed ret = Fixed.ZERO;
+    for(int k = 0; k < values.length; k++) {
+      ret = Fixed.add(ret, Fixed.mul(values[k], new Fixed(weight[k])).div(new Fixed(weightTotal)));
+    }
+
+    return ret;
+  }
+  public static Vector weightedAverage(Vector[] values, double[] weight) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+    if (weight == null)
+      throw new IllegalArgumentException("Weight array cannot be null");
+    if (Arrays.asList(values).contains(null))
+      throw new IllegalArgumentException("Values array cannot contain nulls");
+    if (values.length != weight.length)
+      throw new IllegalArgumentException(String.format("Array length mismatch (%d != %d)", values.length, weight.length));
+
+    double weightTotal = cumSum(weight);
+    Vector ret = Vector.ZERO;
+    for(int k = 0; k < values.length; k++) {
+      ret = Vector.add(ret, values[k].scale(weight[k] / weightTotal));
+    }
+
+    return ret;
+  }
+
+
+  public static double cumSum(double... values) {
+    return cumulativeSum(values);
+  }
+  public static float cumSum(float... values) {
+    return cumulativeSum(values);
+  }
+  public static long cumSum(long... values) {
+    return cumulativeSum(values);
+  }
+  public static int cumSum(int... values) {
+    return cumulativeSum(values);
+  }
+  public static short cumSum(short... values) {
+    return cumulativeSum(values);
+  }
+  public static byte cumSum(byte... values) {
+    return cumulativeSum(values);
+  }
+
+
+  public static double cumulativeSum(double... values) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+
+    double ret = 0;
+    for(double v : values) {
+      ret += v;
+    }
+
+    return ret;
+  }
+  public static float cumulativeSum(float... values) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+
+    float ret = 0;
+    for(float v : values) {
+      ret += v;
+    }
+
+    return ret;
+  }
+  public static long cumulativeSum(long... values) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+
+    long ret = 0;
+    for(long v : values) {
+      ret += v;
+    }
+
+    return ret;
+  }
+  public static int cumulativeSum(int... values) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+
+    int ret = 0;
+    for(int v : values) {
+      ret += v;
+    }
+
+    return ret;
+  }
+  public static short cumulativeSum(short... values) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+
+    short ret = 0;
+    for(short v : values) {
+      ret += v;
+    }
+
+    return ret;
+  }
+  public static byte cumulativeSum(byte... values) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array cannot be null");
+
+    byte ret = 0;
+    for(byte v : values) {
+      ret += v;
+    }
+
+    return ret;
+  }
+
+
   public static double ceiling(double a) {
     return ceil(a);
   }
