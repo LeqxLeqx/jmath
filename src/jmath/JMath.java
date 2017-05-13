@@ -2224,6 +2224,61 @@ public /*static*/ class JMath { private JMath() {}
   }
 
 
+  public static double roundDown(double value) {
+    double rounded = JMath.round(value);
+    if (rounded > value)
+      rounded--;
+
+    return rounded;
+  }
+  public static Vector roundDown(Vector vector) {
+    return new Vector(
+            roundDown(vector.x),
+            roundDown(vector.y),
+            roundDown(vector.z)
+      );
+  }
+
+  public static double roundUp(double value) {
+    double rounded = JMath.round(value);
+    if (rounded < value)
+      rounded++;
+
+    return rounded;
+  }
+  public static Vector roundUp(Vector vector) {
+    return new Vector(
+            roundUp(vector.x),
+            roundUp(vector.y),
+            roundUp(vector.z)
+      );
+  }
+
+
+
+  public static double clamp(double val, double min, double max) {
+
+    if (min > max)
+      throw new IllegalArgumentException("Minimum value cannot be greater than maximum value");
+
+    if (val < min)
+      val = min;
+    if (val > max)
+      val = max;
+
+    return val;
+  }
+  public static double[] clampAll(double[] values, double min, double max) {
+    if (values == null)
+      throw new IllegalArgumentException("Values array may not be null");
+
+    for(int k = 0; k < values.length; k++) {
+      values[k] = clamp(values[k], min, max);
+    }
+
+    return values;
+  }
+
 
   // Aliases
 

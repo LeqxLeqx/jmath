@@ -307,6 +307,18 @@ public class Vector extends IVector{
     return String.format("[%s,%s,%s]", x, y, z);
   }
 
+  public String toString2() {
+    return String.format("[%s,%s]", x, y);
+  }
+
+  public String toStringInt() {
+    return String.format("[%d,%d,%d]", (int) x, (int) y, (int) z);
+  }
+
+  public String toStringInt2() {
+    return String.format("[%d,%d]", (int) x, (int) y);
+  }
+
 
   @Override
   public boolean equals(Object o) {
