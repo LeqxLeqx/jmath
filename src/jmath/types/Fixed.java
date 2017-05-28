@@ -1,6 +1,7 @@
 package jmath.types;
 
 import jmath.JMath;
+import jmath.tools.ArrayTools;
 
 /**
  * Author:    LeqxLeqx
@@ -64,7 +65,7 @@ public class Fixed extends MObject {
       throw new IllegalArgumentException("Fixed getValue array cannot be null");
     if (array.length == 0)
       throw new IllegalArgumentException("Fixed getValue array must have a positive length");
-    if (Tools.arrayContainsNulls(array))
+    if (ArrayTools.containsNull(array))
       throw new IllegalArgumentException("Fixed getValue array may not contain nulls");
   }
 

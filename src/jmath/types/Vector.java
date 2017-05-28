@@ -1,6 +1,7 @@
 package jmath.types;
 
 import jmath.JMath;
+import jmath.tools.ArrayTools;
 
 /**
  * Author:    LeqxLeqx
@@ -60,7 +61,7 @@ public class Vector extends IVector{
   public static Vector add(Vector... vectors) {
     if (vectors == null)
       throw new IllegalArgumentException("Vectors array cannot be null");
-    if (Tools.arrayContainsNulls(vectors))
+    if (ArrayTools.containsNull(vectors))
       throw new IllegalArgumentException("Vector array cannot contain nulls");
 
     double x = 0, y = 0, z = 0;
@@ -89,7 +90,7 @@ public class Vector extends IVector{
   public static double dot(Vector... vectors) {
     if (vectors == null)
       throw new IllegalArgumentException("Vectors array cannot be null");
-    if (Tools.arrayContainsNulls(vectors))
+    if (ArrayTools.containsNull(vectors))
       throw new IllegalArgumentException("Vector array cannot contain nulls");
     if (vectors.length == 0)
       throw new IllegalArgumentException("Vector array must be of a positive length");
@@ -223,7 +224,7 @@ public class Vector extends IVector{
   public IVector sub(IVector... ivectors) {
     if (ivectors == null)
       throw new IllegalArgumentException("Vector array cannot be null");
-    if (Tools.arrayContainsNulls(ivectors))
+    if (ArrayTools.containsNull(ivectors))
       throw new IllegalArgumentException("Vector array cannot contain nulls");
 
     Vector[] vectors = new Vector[ivectors.length];
@@ -263,7 +264,7 @@ public class Vector extends IVector{
   public Vector sub(Vector... vectors) {
     if (vectors == null)
       throw new IllegalArgumentException("Vector array cannot be null");
-    if (Tools.arrayContainsNulls(vectors))
+    if (ArrayTools.containsNull(vectors))
       throw new IllegalArgumentException("Vector array cannot contain null");
 
     double x = this.x, y = this.y, z = this.z;

@@ -1,6 +1,7 @@
 package jmath.types;
 
 import jmath.JMath;
+import jmath.tools.ArrayTools;
 
 /**
  * Author:    LeqxLeqx
@@ -152,7 +153,7 @@ public class NVector extends IVector {
   private static void checkArray(IVector[] vectors) {
     if (vectors == null)
       throw new IllegalArgumentException("Vectors array cannot be null");
-    if (Tools.arrayContainsNulls(vectors))
+    if (ArrayTools.containsNull(vectors))
       throw new IllegalArgumentException("Vector array cannot contain nulls");
     if (vectors.length == 0)
       throw new IllegalArgumentException("Vector array must be of a positive length");
@@ -162,7 +163,7 @@ public class NVector extends IVector {
   private static void checkArray(IVector[] vectors, int dim) {
     if (vectors == null)
       throw new IllegalArgumentException("Vectors array cannot be null");
-    if (Tools.arrayContainsNulls(vectors))
+    if (ArrayTools.containsNull(vectors))
       throw new IllegalArgumentException("Vector array cannot contain nulls");
     if (vectors.length == 0)
       throw new IllegalArgumentException("Vector array must be of a positive length");

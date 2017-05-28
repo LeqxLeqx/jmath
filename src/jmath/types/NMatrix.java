@@ -1,5 +1,7 @@
 package jmath.types;
 
+import jmath.tools.ArrayTools;
+
 /**
  * Author:    LeqxLeqx
  */
@@ -149,7 +151,7 @@ public class NMatrix extends IMatrix{
   private static void checkArray(IMatrix[] matrices) {
     if (matrices == null)
       throw new IllegalArgumentException("Matrix array cannot be null");
-    if (Tools.arrayContainsNulls(matrices))
+    if (ArrayTools.containsNull(matrices))
       throw new IllegalArgumentException("Matrix array cannot contain nulls");
     if (matrices.length == 0)
       throw new IllegalArgumentException("Matrix array must have a positive length");
@@ -169,7 +171,7 @@ public class NMatrix extends IMatrix{
   private static void checkArray(IMatrix[] matrices, int rows, int columns) {
     if (matrices == null)
       throw new IllegalArgumentException("Matrix array cannot be null");
-    if (Tools.arrayContainsNulls(matrices))
+    if (ArrayTools.containsNull(matrices))
       throw new IllegalArgumentException("Matrix array cannot contain nulls");
 
     for(IMatrix m : matrices) {

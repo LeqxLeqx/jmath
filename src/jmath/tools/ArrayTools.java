@@ -7,6 +7,177 @@ import java.util.Random;
  */
 public /*static*/ class ArrayTools {
 
+
+  public static <T> boolean containsNull(T[] array) {
+
+    for (T t : array) {
+      if (t == null)
+        return true;
+    }
+
+    return false;
+  }
+
+  public static <T> boolean contains(T[] array, T t) {
+
+    for (T e : array) {
+      if (e == t)
+        return true;
+    }
+
+    return false;
+  }
+  public static boolean contains(long[] array, long value) {
+
+    for(long l : array) {
+      if (l == value)
+        return true;
+    }
+
+    return false;
+  }
+  public static boolean contains(int[] array, int value) {
+
+    for(int l : array) {
+      if (l == value)
+        return true;
+    }
+
+    return false;
+  }
+  public static boolean contains(short[] array, short value) {
+
+    for(short l : array) {
+      if (l == value)
+        return true;
+    }
+
+    return false;
+  }
+  public static boolean contains(byte[] array, byte value) {
+
+    for(byte l : array) {
+      if (l == value)
+        return true;
+    }
+
+    return false;
+  }
+  public static boolean contains(char[] array, char value) {
+
+    for(char l : array) {
+      if (l == value)
+        return true;
+    }
+
+    return false;
+  }
+  public static boolean contains(float[] array, float value) {
+
+    for(float l : array) {
+      if (l == value)
+        return true;
+    }
+
+    return false;
+  }
+  public static boolean contains(double[] array, double value) {
+
+    for(double l : array) {
+      if (l == value)
+        return true;
+    }
+
+    return false;
+  }
+
+
+  public static <T> int occurrences(T[] array, T t) {
+    int ret = 0;
+
+    for(T e : array) {
+      if (e == null && t == null)
+        ret++;
+      else if (!(e == null || t == null) && t.equals(e))
+        ret++;
+
+    }
+
+    return ret;
+  }
+  public static int occurrences(long[] array, long t) {
+    int ret = 0;
+
+    for(long e : array) {
+      if (e == t)
+        ret++;
+    }
+
+    return ret;
+  }
+  public static int occurrences(int[] array, int t) {
+    int ret = 0;
+
+    for(int e : array) {
+      if (e == t)
+        ret++;
+    }
+
+    return ret;
+  }
+  public static int occurrences(short[] array, short t) {
+    int ret = 0;
+
+    for(short e : array) {
+      if (e == t)
+        ret++;
+    }
+
+    return ret;
+  }
+  public static int occurrences(byte[] array, byte t) {
+    int ret = 0;
+
+    for(byte e : array) {
+      if (e == t)
+        ret++;
+    }
+
+    return ret;
+  }
+  public static int occurrences(char[] array, char t) {
+    int ret = 0;
+
+    for(char e : array) {
+      if (e == t)
+        ret++;
+    }
+
+    return ret;
+  }
+  public static int occurrences(float[] array, float t) {
+    int ret = 0;
+
+    for(float e : array) {
+      if (e == t)
+        ret++;
+    }
+
+    return ret;
+  }
+  public static int occurrences(double[] array, double t) {
+    int ret = 0;
+
+    for(double e : array) {
+      if (e == t)
+        ret++;
+    }
+
+    return ret;
+  }
+
+
+
   public static <T> void shuffle(T[] array) {
     shuffle(array, new Random());
   }

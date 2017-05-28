@@ -1,6 +1,7 @@
 package jmath.types;
 
 import jmath.JMath;
+import jmath.tools.ArrayTools;
 
 /**
  * Author:    LeqxLeqx
@@ -37,8 +38,8 @@ public class Complex extends MObject {
     int
       firstPlus = string.indexOf("+"),
       lastMinus = string.lastIndexOf("-"),
-      pluses = Tools.numberOfOccurrences(string, '+'),
-      minuses = Tools.numberOfOccurrences(string, '-'),
+      pluses = ArrayTools.occurrences(string.toCharArray(), '+'),
+      minuses = ArrayTools.occurrences(string.toCharArray(), '-'),
       split
               ;
 
@@ -158,7 +159,7 @@ public class Complex extends MObject {
 
     if (values == null)
       throw new IllegalArgumentException("Cannot add null array");
-    if (Tools.arrayContainsNulls(values))
+    if (ArrayTools.containsNull(values))
       throw new IllegalArgumentException("Cannot add array containing nulls");
 
     double r = 0, i = 0;
@@ -188,7 +189,7 @@ public class Complex extends MObject {
 
     if (values == null)
       throw new IllegalArgumentException("Cannot multiply null array");
-    if (Tools.arrayContainsNulls(values))
+    if (ArrayTools.containsNull(values))
       throw new IllegalArgumentException("Cannot multiply array containing null");
     if (values.length == 0)
       return Complex.ONE;
@@ -272,7 +273,7 @@ public class Complex extends MObject {
 
     if (values == null)
       throw new IllegalArgumentException("Cannot subtract by null array");
-    if (Tools.arrayContainsNulls(values))
+    if (ArrayTools.containsNull(values))
       throw new IllegalArgumentException("Cannot subtract by array containing nulls");
 
     double real = this.real, imaginary = this.imaginary;
@@ -310,7 +311,7 @@ public class Complex extends MObject {
 
     if (values == null)
       throw new IllegalArgumentException("Cannot divide by null array");
-    if (Tools.arrayContainsNulls(values))
+    if (ArrayTools.containsNull(values))
       throw new IllegalArgumentException("Cannot divide by array containing null");
 
 

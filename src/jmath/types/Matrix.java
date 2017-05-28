@@ -1,6 +1,7 @@
 package jmath.types;
 
 import jmath.JMath;
+import jmath.tools.ArrayTools;
 
 /**
  * Author:    LeqxLeqx
@@ -105,7 +106,7 @@ public class Matrix extends IMatrix{
   public static Matrix fromColumns(Vector[] columns) {
     if (columns == null)
       throw new IllegalArgumentException("Columns array cannot be null");
-    if (Tools.arrayContainsNulls(columns))
+    if (ArrayTools.containsNull(columns))
       throw new IllegalArgumentException("Columns array cannot contain nulls");
     if (columns.length != 3)
       throw new IllegalArgumentException("Columns array must be of length 3");
@@ -120,7 +121,7 @@ public class Matrix extends IMatrix{
   public static Matrix fromRows(Vector[] rows) {
     if (rows == null)
       throw new IllegalArgumentException("Rows array cannot be null");
-    if (Tools.arrayContainsNulls(rows))
+    if (ArrayTools.containsNull(rows))
       throw new IllegalArgumentException("Rows array cannot contain nulls");
     if (rows.length != 3)
       throw new IllegalArgumentException("Rows array must be of length 3");
@@ -463,7 +464,7 @@ public class Matrix extends IMatrix{
   public Matrix sub(IMatrix... matrices) {
     if (matrices == null)
       throw new IllegalArgumentException("Cannot subtract by null matrix array");
-    if (Tools.arrayContainsNulls(matrices))
+    if (ArrayTools.containsNull(matrices))
       throw new IllegalArgumentException("Cannot subtract by matrix array containing nulls");
 
     Matrix[] ms = new Matrix[matrices.length];
@@ -489,7 +490,7 @@ public class Matrix extends IMatrix{
   public Matrix sub(Matrix... matrices) {
     if (matrices == null)
       throw new IllegalArgumentException("Cannot subtract by null matrix array");
-    if (Tools.arrayContainsNulls(matrices))
+    if (ArrayTools.containsNull(matrices))
       throw new IllegalArgumentException("Cannot subtract by matrix array containing nulls");
 
     Matrix[] newMatrices = new Matrix[matrices.length + 1];
