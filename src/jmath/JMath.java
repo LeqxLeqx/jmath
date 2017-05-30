@@ -49,7 +49,7 @@ public /*static*/ class JMath { private JMath() {}
           ;
 
 
-  // Absolute getValue functions
+  /* Absolute getValue functions */
 
   /**
    * Returns the absolute value of the lone argument 'a'
@@ -95,7 +95,7 @@ public /*static*/ class JMath { private JMath() {}
    * Returns the absolute value of the lone argument 'vector'
    *
    * @param vector the value to which the function will be applied
-   * @return the absolute value of 'a'
+   * @return the absolute value of 'vector'
    */
   public static double absoluteValue(IVector vector) {
     return abs(vector);
@@ -105,7 +105,7 @@ public /*static*/ class JMath { private JMath() {}
    * Returns the absolute value of the lone argument 'complex'
    *
    * @param complex the value to which the function will be applied
-   * @return the absolute value of 'a'
+   * @return the absolute value of 'complex'
    */
   public static double absoluteValue(Complex complex) {
     return abs(complex);
@@ -116,7 +116,7 @@ public /*static*/ class JMath { private JMath() {}
    * Returns the absolute value of the lone argument 'fixed'
    *
    * @param fixed the value to which the function will be applied
-   * @return the absolute value of 'a'
+   * @return the absolute value of 'fixed'
    */
   public static Fixed absoluteValue(Fixed fixed) {
     return abs(fixed);
@@ -167,7 +167,7 @@ public /*static*/ class JMath { private JMath() {}
    * Returns the absolute value of the lone argument 'vector'
    *
    * @param vector the value to which the function will be applied
-   * @return the absolute value of 'a'
+   * @return the absolute value of 'vector'
    */
   public static double abs(IVector vector) {
     argCheck(vector);
@@ -178,7 +178,7 @@ public /*static*/ class JMath { private JMath() {}
    * Returns the absolute value of the lone argument 'complex'
    *
    * @param complex the value to which the function will be applied
-   * @return the absolute value of 'a'
+   * @return the absolute value of 'complex'
    */
   public static double abs(Complex complex) {
     argCheck(complex);
@@ -189,7 +189,7 @@ public /*static*/ class JMath { private JMath() {}
    * Returns the absolute value of the lone argument 'fixed'
    *
    * @param fixed the value to which the function will be applied
-   * @return the absolute value of 'a'
+   * @return the absolute value of 'fixed'
    */
   public static Fixed abs(Fixed fixed) {
     argCheck(fixed);
@@ -197,7 +197,7 @@ public /*static*/ class JMath { private JMath() {}
   }
 
 
-  // Min-max getValue functions
+  /* Min-max getValue functions */
 
   /**
    * Returns the maximum between the provided values
@@ -532,7 +532,7 @@ public /*static*/ class JMath { private JMath() {}
 
 
 
-  // Inverse trigonometric functions
+  /* Inverse trigonometric functions */
 
   /**
    * Returns the arcosine or inverse-cosine of the provided value
@@ -949,7 +949,7 @@ public /*static*/ class JMath { private JMath() {}
     return new Fixed(atan2(y.toDouble(), x.toDouble()));
   }
 
-  // trigonometric functions
+  /* trigonometric functions */
 
 
   /**
@@ -1351,7 +1351,7 @@ public /*static*/ class JMath { private JMath() {}
 
 
 
-  // inverse hyperbolic functions
+  /* inverse hyperbolic functions */
 
   /**
    *
@@ -1779,7 +1779,7 @@ public /*static*/ class JMath { private JMath() {}
 
 
 
-  // hyperbolic functions
+  /* hyperbolic functions */
 
 
   /**
@@ -2198,7 +2198,8 @@ public /*static*/ class JMath { private JMath() {}
 
 
 
-  // Root functions
+  /* Root functions */
+
 
   /**
    *
@@ -2333,8 +2334,9 @@ public /*static*/ class JMath { private JMath() {}
     return f.cubed();
   }
 
-  // Exponent functions
 
+
+  /* Exponent functions */
 
   /**
    *
@@ -2591,7 +2593,7 @@ public /*static*/ class JMath { private JMath() {}
   }
 
 
-  // logarithm functions
+  /* logarithm functions */
 
 
   /**
@@ -2887,7 +2889,7 @@ public /*static*/ class JMath { private JMath() {}
 
 
 
-  // Misc
+  /* Misc */
 
   /**
    *
@@ -4067,7 +4069,7 @@ public /*static*/ class JMath { private JMath() {}
   }
 
 
-  // Aliases
+  /* Aliases */
 
 
   /**
@@ -4242,7 +4244,7 @@ public /*static*/ class JMath { private JMath() {}
   }
 
 
-  // Calculus
+  /* Calculus */
 
   /**
    *
@@ -4550,7 +4552,7 @@ public /*static*/ class JMath { private JMath() {}
 
 
 
-  // Tool(s)
+  /* Tool(s) */
 
   private static void argCheck(Object o) {
     if ( o == null)

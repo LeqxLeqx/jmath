@@ -22,9 +22,6 @@ package jmath.function;
 
 import java.util.LinkedList;
 
-/**
- * Author:    LeqxLeqx
- */
 class Namespace {
 
   final LinkedList<Function> functions = new LinkedList<>();
@@ -36,7 +33,7 @@ class Namespace {
 
   public void registerFunction(Function f) {
 
-    deregisterFunction(f.name); // may exist
+    deregisterFunction(f.name); /* may exist */
     functions.add(f);
 
   }

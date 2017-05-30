@@ -21,8 +21,10 @@
 package jmath.tools;
 
 /**
- * Created by mitchell on 12/05/17.
+ * Helper interface for jmath.tools.ArrayTools methods
  */
+
+@FunctionalInterface
 public interface DoubleArrayFillInterface {
 
   double get(int index);

@@ -24,7 +24,10 @@ import jmath.JMath;
 import jmath.tools.ArrayTools;
 
 /**
- * Author:    LeqxLeqx
+ * Class for performing vector mathematics
+ * in three dimensions. An object of this
+ * class represents as single vector of three
+ * dimensions.
  */
 public class Vector extends IVector{
 
@@ -39,7 +42,7 @@ public class Vector extends IVector{
   public static Vector parse(String string) {
 
     if (string == null)
-      throw new IllegalArgumentException("Cannot parseEvaluable null string as a vector");
+      throw new IllegalArgumentException("Cannot parse null string as a vector");
 
     String[] split = string.split("\\,");
     String xString, yString, zString;
@@ -47,7 +50,7 @@ public class Vector extends IVector{
 
 
     if (split.length != 3 || !split[0].startsWith("[") || !split[2].endsWith("]"))
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a vector", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a vector", string));
 
     xString = split[0].substring(1);
     yString = split[1];
@@ -59,14 +62,14 @@ public class Vector extends IVector{
       y = Double.parseDouble(yString);
       z = Double.parseDouble(zString);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a vector", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a vector", string));
     }
 
     return new Vector(x, y, z);
   }
 
 
-  // Addition operation
+  /* Addition operation */
 
 
   public static Vector add(Vector a, Vector b) {
@@ -97,7 +100,7 @@ public class Vector extends IVector{
 
 
 
-  // Inner product operation
+  /* Inner product operation */
 
   public static double dot(Vector a, Vector b) {
     if (a == null || b == null)
@@ -152,7 +155,7 @@ public class Vector extends IVector{
   }
 
   public Vector() {
-    this.x = 0; // Technically redundant
+    this.x = 0; /* Technically redundant */
     this.y = 0;
     this.z = 0;
   }
@@ -169,7 +172,7 @@ public class Vector extends IVector{
   }
 
 
-  // Unary operations
+  /* Unary operations */
 
   @Override
   public Vector negative() {
@@ -192,7 +195,7 @@ public class Vector extends IVector{
   }
 
   @Override
-  public double magnitude() { // Alias of absoluteValue
+  public double magnitude() { /* Alias of absoluteValue */
     return absoluteValue();
   }
 
@@ -219,7 +222,7 @@ public class Vector extends IVector{
   }
 
 
-  // Scale
+  /* Scale */
 
   @Override
   public Vector scale(double s) {
@@ -230,7 +233,7 @@ public class Vector extends IVector{
       );
   }
 
-  // Subtraction methods
+  /* Subtraction methods */
 
   @Override
   public IVector sub(IVector vector) {
@@ -265,10 +268,10 @@ public class Vector extends IVector{
     return sub(vectors);
   }
 
-  public Vector subtract(Vector v) { // Alias of sub(Vector v)
+  public Vector subtract(Vector v) { /* Alias of sub(Vector v) */
     return sub(v);
   }
-  public Vector subtract(Vector... vectors) { // Alias of sub(Vector... vectors)
+  public Vector subtract(Vector... vectors) { /* Alias of sub(Vector... vectors) */
     return sub(vectors);
   }
   public Vector sub(Vector v) {
@@ -299,7 +302,7 @@ public class Vector extends IVector{
   }
 
 
-  // Cross multiplication
+  /* Cross multiplication */
 
   @Override
   public IVector cross(IVector a) {

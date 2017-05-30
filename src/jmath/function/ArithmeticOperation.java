@@ -28,7 +28,8 @@ import java.util.LinkedList;
 import static jmath.function.OperationType.DIVISION;
 
 /**
- * Author:    LeqxLeqx
+ * Class for objects representing
+ * arithmetic operations
  */
 public class ArithmeticOperation extends Operation {
 

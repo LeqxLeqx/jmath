@@ -21,7 +21,9 @@
 package jmath.function;
 
 /**
- * Author:    LeqxLeqx
+ * A class extending the functionality
+ * of jmath.function.Expression to
+ * allow for the handling of polynomials
  */
 public class Polynomial extends Expression{
 
@@ -65,7 +67,7 @@ public class Polynomial extends Expression{
   public Polynomial(String variable, double... values) {
     super(polynomialOperation(variable, values));
 
-    coefficients = values.clone(); // checked in static polynomialOperation method
+    coefficients = values.clone(); /* checked in static polynomialOperation method */
     this.variable = variable;
   }
   public Polynomial(double... values) {

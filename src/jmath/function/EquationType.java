@@ -21,7 +21,8 @@
 package jmath.function;
 
 /**
- * Author:    LeqxLeqx
+ * An Enum for types of
+ * equations and comparisons
  */
 public enum EquationType {
 

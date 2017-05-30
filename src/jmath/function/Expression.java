@@ -28,7 +28,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Author:    LeqxLeqx
+ * A class whose objects represent
+ * a mathematical expression
  */
 public class Expression {
 
@@ -82,7 +83,7 @@ public class Expression {
 
       case 2:
         if (varGroups.get(0).name.compareTo(varGroups.get(1).name) > 0)
-          varGroups.add(varGroups.remove(0)); // should reverse order
+          varGroups.add(varGroups.remove(0)); /* should reverse order */
         return;
 
       default:
@@ -189,7 +190,7 @@ public class Expression {
   }
 
   public Expression clone() {
-    return new Expression(evaluable.clone()); // perhaps unnecessary work
+    return new Expression(evaluable.clone()); /* perhaps unnecessary work */
   }
 
   public Expression derivativeWrtX() {

@@ -21,7 +21,11 @@
 package jmath.function;
 
 /**
- * Author:    LeqxLeqx
+ *
+ * Class whose objects represent
+ * the operable objects for
+ * parsed expressions
+ *
  */
 public class Value <T> implements Evaluable {
 
@@ -44,7 +48,7 @@ public class Value <T> implements Evaluable {
 
   @Override
   public Value<T> clone() {
-    return new Value<>( (T) contents);
+    return new Value<>( (T) contents );
   }
 
   @Override

@@ -23,9 +23,10 @@ package jmath.tools;
 import java.util.Random;
 
 /**
- * Created by mitchell on 01/05/17.
+ * Class full of methods for the purpose
+ * of modifying and interacting with arrays
  */
-public /*static*/ class ArrayTools {
+public /*static*/ class ArrayTools { private ArrayTools() {  }
 
 
   public static <T> boolean containsNull(T[] array) {
@@ -197,13 +198,39 @@ public /*static*/ class ArrayTools {
   }
 
 
-
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   *
+   * @param array array to be shuffled
+   */
   public static <T> void shuffle(T[] array) {
     shuffle(array, new Random());
   }
+
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   * created from the provided seed
+   *
+   * @param array array to be shuffled
+   * @param seed the seed to use for the pseudo-random number generator
+   */
   public static <T> void shuffle(T[] array, long seed) {
     shuffle(array, new Random(seed));
   }
+
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with the provided java.util.Random
+   * object
+   *
+   * @param array array to be shuffled
+   * @param random the random object to use
+   */
   public static <T> void shuffle(T[] array, Random random) {
 
     for(int k = array.length - 1; k > 0; k--) {
@@ -215,12 +242,37 @@ public /*static*/ class ArrayTools {
   }
 
 
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   *
+   * @param array array to be shuffled
+   */
   public static void shuffle(long[] array) {
     shuffle(array, new Random());
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   * created from the provided seed
+   *
+   * @param array array to be shuffled
+   * @param seed the seed to use for the pseudo-random number generator
+   */
   public static void shuffle(long[] array, long seed) {
     shuffle(array, new Random(seed));
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with the provided java.util.Random
+   * object
+   *
+   * @param array array to be shuffled
+   * @param random the random object to use
+   */
   public static void shuffle(long[] array, Random random) {
 
     for(int k = array.length - 1; k > 0; k--) {
@@ -230,12 +282,37 @@ public /*static*/ class ArrayTools {
     }
   }
 
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   *
+   * @param array array to be shuffled
+   */
   public static void shuffle(int[] array) {
     shuffle(array, new Random());
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   * created from the provided seed
+   *
+   * @param array array to be shuffled
+   * @param seed the seed to use for the pseudo-random number generator
+   */
   public static void shuffle(int[] array, long seed) {
     shuffle(array, new Random(seed));
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with the provided java.util.Random
+   * object
+   *
+   * @param array array to be shuffled
+   * @param random the random object to use
+   */
   public static void shuffle(int[] array, Random random) {
 
     for(int k = array.length - 1; k > 0; k--) {
@@ -245,12 +322,37 @@ public /*static*/ class ArrayTools {
     }
   }
 
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   *
+   * @param array array to be shuffled
+   */
   public static void shuffle(short[] array) {
     shuffle(array, new Random());
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   * created from the provided seed
+   *
+   * @param array array to be shuffled
+   * @param seed the seed to use for the pseudo-random number generator
+   */
   public static void shuffle(short[] array, long seed) {
     shuffle(array, new Random(seed));
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with the provided java.util.Random
+   * object
+   *
+   * @param array array to be shuffled
+   * @param random the random object to use
+   */
   public static void shuffle(short[] array, Random random) {
 
     for(int k = array.length - 1; k > 0; k--) {
@@ -260,12 +362,37 @@ public /*static*/ class ArrayTools {
     }
   }
 
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   *
+   * @param array array to be shuffled
+   */
   public static void shuffle(byte[] array) {
     shuffle(array, new Random());
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   * created from the provided seed
+   *
+   * @param array array to be shuffled
+   * @param seed the seed to use for the pseudo-random number generator
+   */
   public static void shuffle(byte[] array, long seed) {
     shuffle(array, new Random(seed));
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with the provided java.util.Random
+   * object
+   *
+   * @param array array to be shuffled
+   * @param random the random object to use
+   */
   public static void shuffle(byte[] array, Random random) {
 
     for(int k = array.length - 1; k > 0; k--) {
@@ -275,12 +402,37 @@ public /*static*/ class ArrayTools {
     }
   }
 
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   *
+   * @param array array to be shuffled
+   */
   public static void shuffle(double[] array) {
     shuffle(array, new Random());
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   * created from the provided seed
+   *
+   * @param array array to be shuffled
+   * @param seed the seed to use for the pseudo-random number generator
+   */
   public static void shuffle(double[] array, long seed) {
     shuffle(array, new Random(seed));
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with the provided java.util.Random
+   * object
+   *
+   * @param array array to be shuffled
+   * @param random the random object to use
+   */
   public static void shuffle(double[] array, Random random) {
 
     for(int k = array.length - 1; k > 0; k--) {
@@ -290,12 +442,37 @@ public /*static*/ class ArrayTools {
     }
   }
 
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   *
+   * @param array array to be shuffled
+   */
   public static void shuffle(float[] array) {
     shuffle(array, new Random());
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   * created from the provided seed
+   *
+   * @param array array to be shuffled
+   * @param seed the seed to use for the pseudo-random number generator
+   */
   public static void shuffle(float[] array, long seed) {
     shuffle(array, new Random(seed));
   }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with the provided java.util.Random
+   * object
+   *
+   * @param array array to be shuffled
+   * @param random the random object to use
+   */
   public static void shuffle(float[] array, Random random) {
 
     for(int k = array.length - 1; k > 0; k--) {

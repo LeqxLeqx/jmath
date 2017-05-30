@@ -21,7 +21,9 @@
 package jmath.function.parsing;
 
 /**
- * Author:    LeqxLeqx
+ * An exception class for exceptions
+ * related specifically to the parsing
+ * of expressions
  */
 public class ParsingException extends RuntimeException {
 

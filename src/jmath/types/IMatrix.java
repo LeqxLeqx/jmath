@@ -21,7 +21,8 @@
 package jmath.types;
 
 /**
- * Author:    LeqxLeqx
+ * Matrix class from which both
+ * Matrix and NMatrix inherit.
  */
 public abstract class IMatrix extends MObject{
 
@@ -45,14 +46,14 @@ public abstract class IMatrix extends MObject{
   public abstract NMatrix toNMatrix();
 
 
-  // Unary operations
+  /* Unary operations */
 
   public abstract IMatrix transpose();
   public abstract IMatrix negative();
 
   public abstract double determinant();
 
-  // Binary Operations
+  /* Binary Operations */
 
   public abstract IMatrix scale(double s);
   public abstract IMatrix subtract(IMatrix m);

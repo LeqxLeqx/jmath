@@ -21,7 +21,8 @@
 package jmath.function;
 
 /**
- * Author:    LeqxLeqx
+ * An Enum for the available
+ * types of evaluables
  */
 public enum EvaluableType {
 

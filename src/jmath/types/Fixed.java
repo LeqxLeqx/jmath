@@ -24,7 +24,8 @@ import jmath.JMath;
 import jmath.tools.ArrayTools;
 
 /**
- * Author:    LeqxLeqx
+ * Class for performing performing
+ * fixed point arithmetic operations
  */
 public class Fixed extends MObject {
 
@@ -53,11 +54,11 @@ public class Fixed extends MObject {
     return ret;
   }
 
-  public static Fixed multiply(Fixed a, Fixed b) { // Alias
+  public static Fixed multiply(Fixed a, Fixed b) { /* Alias */
     return mul(a, b);
   }
 
-  public static Fixed multiply(Fixed... fixed) { // Alias
+  public static Fixed multiply(Fixed... fixed) { /* Alias */
     return mul(fixed);
   }
 
@@ -159,7 +160,7 @@ public class Fixed extends MObject {
       else
         return new Fixed(value + r - PRECISION);
     }
-    else { // r < PRECISION / 2
+    else { /* r < PRECISION / 2 */
       if (value > 0)
         return new Fixed(value - r);
       else
@@ -170,11 +171,11 @@ public class Fixed extends MObject {
 
 
 
-  public Fixed subtract(Fixed fixed) { // alias
+  public Fixed subtract(Fixed fixed) { /* alias */
     return sub(fixed);
   }
 
-  public Fixed subtract(Fixed... fixed) { // alias
+  public Fixed subtract(Fixed... fixed) { /* alias */
     return sub(fixed);
   }
 
@@ -197,11 +198,11 @@ public class Fixed extends MObject {
     return ret;
   }
 
-  public Fixed divide(Fixed fixed) { // alias
+  public Fixed divide(Fixed fixed) { /* alias */
     return div(fixed);
   }
 
-  public Fixed divide(Fixed... fixed) { // alias
+  public Fixed divide(Fixed... fixed) { /* alias */
     return div(fixed);
   }
 

@@ -25,7 +25,9 @@ import jmath.function.Variable;
 import java.util.Arrays;
 
 /**
- * Author:    LeqxLeqx
+ * Class for representing a
+ * continuous domain along
+ * at least one dimension
  */
 public class Domain {
 

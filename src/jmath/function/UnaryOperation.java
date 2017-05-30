@@ -28,7 +28,8 @@ import jmath.types.IVector;
 import java.util.LinkedList;
 
 /**
- * Author:    LeqxLeqx
+ * Class for objects representing
+ * unary operations
  */
 public class UnaryOperation extends Operation {
 
@@ -573,7 +574,7 @@ public class UnaryOperation extends Operation {
     switch(v.type) {
 
       case REAL:
-        switch(this.type) { //op type
+        switch(this.type) { /* op type */
 
           case SINE:
             ret = JMath.sin((Double) v.getValue());
@@ -600,7 +601,7 @@ public class UnaryOperation extends Operation {
         break;
 
       case COMPLEX:
-        switch(this.type) { //op type
+        switch(this.type) { /* op type */
 
           case SINE:
             ret = JMath.sin((Complex) v.getValue());
@@ -642,7 +643,7 @@ public class UnaryOperation extends Operation {
     switch(v.type) {
 
       case REAL:
-        switch(this.type) { //op type
+        switch(this.type) { /* op type */
 
           case ARC_SINE:
             ret = JMath.asin((Double) v.getValue());
@@ -669,7 +670,7 @@ public class UnaryOperation extends Operation {
         break;
 
       case COMPLEX:
-        switch(this.type) { //op type
+        switch(this.type) { /* op type */
 
           case ARC_SINE:
             ret = JMath.asin((Complex) v.getValue());
@@ -711,7 +712,7 @@ public class UnaryOperation extends Operation {
     switch(v.type) {
 
       case REAL:
-        switch(this.type) { //op type
+        switch(this.type) { /* op type */
 
           case HYPERBOLIC_SINE:
             ret = JMath.sinh((Double) v.getValue());
@@ -738,7 +739,7 @@ public class UnaryOperation extends Operation {
         break;
 
       case COMPLEX:
-        switch(this.type) { //op type
+        switch(this.type) { /* op type */
 
           case HYPERBOLIC_SINE:
             ret = JMath.sinh((Complex) v.getValue());
@@ -780,7 +781,7 @@ public class UnaryOperation extends Operation {
     switch(v.type) {
 
       case REAL:
-        switch(this.type) { //op type
+        switch(this.type) { /* op type */
 
           case ARC_HYPERBOLIC_SINE:
             ret = JMath.asinh((Double) v.getValue());
@@ -807,7 +808,7 @@ public class UnaryOperation extends Operation {
         break;
 
       case COMPLEX:
-        switch(this.type) { //op type
+        switch(this.type) { /* op type */
 
           case ARC_HYPERBOLIC_SINE:
             ret = JMath.asinh((Complex) v.getValue());

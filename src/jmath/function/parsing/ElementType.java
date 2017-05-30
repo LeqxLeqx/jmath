@@ -20,14 +20,11 @@
 
 package jmath.function.parsing;
 
-/**
- * Author:    LeqxLeqx
- */
 enum ElementType {
 
   EVALUABLE,
 
-  // Arithmetic
+  /* Arithmetic */
   ADD,
   SUB,
   MUL,
@@ -35,7 +32,7 @@ enum ElementType {
   MOD,
   POW,
 
-  // Relative
+  /* Relative */
   EQUALS,
   GREATER_THAN,
   LESS_THAN,

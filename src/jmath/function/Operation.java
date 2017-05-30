@@ -25,7 +25,8 @@ import jmath.function.parsing.FunctionParser;
 import java.util.LinkedList;
 
 /**
- * Author:    LeqxLeqx
+ * A class from which all operations
+ * inherit.
  */
 public abstract class Operation implements Evaluable {
 

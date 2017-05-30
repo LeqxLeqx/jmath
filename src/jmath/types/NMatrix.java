@@ -23,7 +23,9 @@ package jmath.types;
 import jmath.tools.ArrayTools;
 
 /**
- * Author:    LeqxLeqx
+ * A class for performing matrix mathematics.
+ * An object of this class represents a
+ * single matrix
  */
 public class NMatrix extends IMatrix{
 
@@ -53,11 +55,11 @@ public class NMatrix extends IMatrix{
 
   public static NMatrix parse(String string) {
     if (string == null)
-      throw new IllegalArgumentException("Cannot parseEvaluable null string as NMatrix object");
+      throw new IllegalArgumentException("Cannot parse null string as NMatrix object");
 
     String[] split = string.split("\\]\\[");
     if (!split[0].startsWith("[[") || !split[split.length - 1].endsWith("]]"))
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a matrix", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a matrix", string));
 
     split[0] = split[0].substring(2);
     split[split.length - 1] = split[split.length - 1].substring(0, split[split.length - 1].length() - 2);
@@ -70,7 +72,7 @@ public class NMatrix extends IMatrix{
 
     for(int k = 1; k < split.length; k++) {
       if (multiSplit[0].length != multiSplit[k].length)
-        throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a matrix", string));
+        throw new IllegalArgumentException(String.format("Cannot parse '%s' as a matrix", string));
     }
 
     double[] ret = new double[multiSplit.length * multiSplit[0].length];
@@ -84,7 +86,7 @@ public class NMatrix extends IMatrix{
       }
 
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a matrix", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a matrix", string));
     }
 
     return new NMatrix(multiSplit.length, multiSplit[0].length, ret);
@@ -133,7 +135,7 @@ public class NMatrix extends IMatrix{
   }
 
 
-  // Addition operations
+  /* Addition operations */
 
   public static NMatrix add(IMatrix a, IMatrix b) {
     if ( a == null || b == null)

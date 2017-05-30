@@ -21,7 +21,9 @@
 package jmath.function;
 
 /**
- * Author:    LeqxLeqx
+ * Objects of this class
+ * represent a variable for
+ * parsed expressions
  */
 public class Variable implements Evaluable {
 
@@ -32,6 +34,7 @@ public class Variable implements Evaluable {
     if (!Character.isAlphabetic(name.charAt(0)) && name.charAt(0) != '_')
       return false;
 
+    /* technically this double checks the first character */
     for(char c : name.toCharArray()) {
 
       if (

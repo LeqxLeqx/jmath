@@ -26,7 +26,8 @@ import jmath.types.Complex;
 import java.util.LinkedList;
 
 /**
- * Author:    LeqxLeqx
+ * Class for objects representing
+ * binary operations
  */
 public class BinaryOperation extends Operation {
 

@@ -21,7 +21,9 @@
 package jmath.function;
 
 /**
- * Author:    LeqxLeqx
+ * An interface which will be implemented
+ * by anything which could serve as an
+ * argument to an operation
  */
 public interface Evaluable {
 

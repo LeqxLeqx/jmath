@@ -23,7 +23,7 @@ package jmath.function;
 import java.util.LinkedList;
 
 /**
- * Author:    LeqxLeqx
+ * A class representing a parameterized function
  */
 public class Function {
 

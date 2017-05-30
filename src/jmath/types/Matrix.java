@@ -24,7 +24,9 @@ import jmath.JMath;
 import jmath.tools.ArrayTools;
 
 /**
- * Author:    LeqxLeqx
+ * A class for performing matrix mathematics.
+ * in 3 dimensions. An object of this class
+ * represents a single 3-by-3 matrix
  */
 public class Matrix extends IMatrix{
 
@@ -34,22 +36,6 @@ public class Matrix extends IMatrix{
           ;
 
   public static Matrix rotation(double phi, double theta, double psi) {
-    /*
-    return new Matrix(
-            JMath.cos(theta) * JMath.cos(psi),
-            - JMath.cos(phi) * JMath.sin(psi) - JMath.sin(phi) * JMath.sin(theta) * JMath.cos(psi),
-            JMath.sin(phi) * JMath.sin(psi) + JMath.cos(phi) * JMath.sin(theta) * JMath.cos(psi),
-
-            JMath.cos(theta) * JMath.sin(psi),
-            JMath.cos(phi) * JMath.cos(psi) + JMath.sin(phi) * JMath.sin(theta) * JMath.sin(psi),
-            - JMath.sin(phi) * JMath.cos(psi) + JMath.cos(phi) * JMath.sin(theta) * JMath.sin(psi),
-
-            - JMath.sin(theta),
-            JMath.sin(phi) * JMath.cos(theta),
-            JMath.cos(phi) * JMath.cos(theta)
-    );
-    */
-
     Matrix
             rx = xRotation(phi),
             ry = yRotation(theta),
@@ -86,7 +72,7 @@ public class Matrix extends IMatrix{
   public static Matrix parse(String string) {
 
     if (string == null)
-      throw new IllegalArgumentException("Cannot parseEvaluable null string as matrix");
+      throw new IllegalArgumentException("Cannot parse null string as matrix");
 
 
     String[] split = string.split("\\]\\[");
@@ -104,14 +90,14 @@ public class Matrix extends IMatrix{
       String[] rowSplit = split[k].split("\\,");
 
       if (rowSplit.length != 3)
-        throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a matrix", string));
+        throw new IllegalArgumentException(String.format("Cannot parse '%s' as a matrix", string));
 
       try {
         r1[k] = Double.parseDouble(rowSplit[0]);
         r2[k] = Double.parseDouble(rowSplit[1]);
         r3[k] = Double.parseDouble(rowSplit[2]);
       } catch (NumberFormatException e) {
-        throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a matrix", string));
+        throw new IllegalArgumentException(String.format("Cannot parse '%s' as a matrix", string));
       }
 
     }
@@ -154,7 +140,7 @@ public class Matrix extends IMatrix{
 
   }
 
-  // Addition operations
+  /* Addition operations */
 
   public static Matrix add(Matrix a, Matrix b) {
     return new Matrix(
@@ -285,7 +271,7 @@ public class Matrix extends IMatrix{
   }
 
 
-  // accessors
+  /* accessors */
 
   @Override
   public double get(int row, int column) {
@@ -296,23 +282,23 @@ public class Matrix extends IMatrix{
 
     switch(row * 3 + column) {
 
-      case 0: // 0,0
+      case 0: /* 0,0 */
         return m00;
-      case 1: // 0,1
+      case 1: /* 0,1 */
         return m01;
-      case 2: // 0,2
+      case 2: /* 0,2 */
         return m02;
-      case 3: // 1,0
+      case 3: /* 1,0 */
         return m10;
-      case 4: // 1,1
+      case 4: /* 1,1 */
         return m11;
-      case 5: // 1,2
+      case 5: /* 1,2 */
         return m12;
-      case 6: // 2,0
+      case 6: /* 2,0 */
         return m20;
-      case 7: // 2,1
+      case 7: /* 2,1 */
         return m21;
-      case 8: // 2,1
+      case 8: /* 2,1 */
         return m22;
 
       default:
@@ -342,31 +328,31 @@ public class Matrix extends IMatrix{
 
     switch(row * 3 + column) {
 
-      case 0: // 0,0
+      case 0: /* 0,0 */
         m00 = value;
         break;
-      case 1: // 0,1
+      case 1: /* 0,1 */
         m01 = value;
         break;
-      case 2: // 0,2
+      case 2: /* 0,2 */
         m02 = value;
         break;
-      case 3: // 1,0
+      case 3: /* 1,0 */
         m10 = value;
         break;
-      case 4: // 1,1
+      case 4: /* 1,1 */
         m11 = value;
         break;
-      case 5: // 1,2
+      case 5: /* 1,2 */
         m12 = value;
         break;
-      case 6: // 2,0
+      case 6: /* 2,0 */
         m20 = value;
         break;
-      case 7: // 2,1
+      case 7: /* 2,1 */
         m21 = value;
         break;
-      case 8: // 2,1
+      case 8: /* 2,1 */
         m22 = value;
         break;
 
@@ -389,7 +375,7 @@ public class Matrix extends IMatrix{
   }
 
 
-  // Vector operations
+  /* Vector operations */
 
   public Vector transform(Vector v) {
     if (v == null)
@@ -411,7 +397,7 @@ public class Matrix extends IMatrix{
     return transform(v.toVector());
   }
 
-  // To vector representations
+  /* To vector representations */
 
   @Override
   public Vector[] toColumnVectors() {
@@ -431,7 +417,7 @@ public class Matrix extends IMatrix{
   }
 
 
-  // Unary operations
+  /* Unary operations */
 
   public Matrix transpose() {
     return new Matrix(
@@ -455,7 +441,7 @@ public class Matrix extends IMatrix{
       m00 * m21 * m12;
   }
 
-  // Binary Operations
+  /* Binary Operations */
 
   public Matrix scale(double s) {
     return new Matrix(
@@ -495,10 +481,10 @@ public class Matrix extends IMatrix{
     return sub(ms);
   }
 
-  public Matrix subtract(Matrix m) { // Alias of sub(Matrix m)
+  public Matrix subtract(Matrix m) { /* Alias of sub(Matrix m) */
     return sub(m);
   }
-  public Matrix subtract(Matrix... matrices) { // Alias of sub(Matrix... matrices)
+  public Matrix subtract(Matrix... matrices) { /* Alias of sub(Matrix... matrices) */
     return sub(matrices);
   }
   public Matrix sub(Matrix m) {

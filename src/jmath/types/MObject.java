@@ -21,7 +21,14 @@
 package jmath.types;
 
 /**
- * Author:    LeqxLeqx
+ * The basic class from which all
+ * mathematical objects in this
+ * library inherit. The lone
+ * constructor for this class
+ * has only package access and
+ * thus, cannot be meaningfully
+ * inherited by classes outside
+ * the package.
  */
 public class MObject {
 

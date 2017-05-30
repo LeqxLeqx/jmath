@@ -23,7 +23,9 @@ package jmath.function;
 import jmath.types.*;
 
 /**
- * Author:    LeqxLeqx
+ * An Enum for the allowable
+ * value types for parsed
+ * expressions
  */
 public enum ValueType{
 

@@ -28,7 +28,8 @@ import jmath.types.NVector;
 import java.util.LinkedList;
 
 /**
- * Author:    LeqxLeqx
+ * A class whose purpose is to
+ * parse strings into an evaluable
  */
 public class FunctionParser {
 
@@ -428,7 +429,7 @@ public class FunctionParser {
     LinkedList<Element> within = new LinkedList<>();
 
     for(int k = end - 1; k >= start; k--) {
-      within.add(0, elements.remove(k)); // add to 0 retains element orders
+      within.add(0, elements.remove(k)); /* add to 0 retains element orders */
     }
 
     return within;
@@ -461,7 +462,7 @@ public class FunctionParser {
         elements.add(parvals[0], new Element(op, ElementType.EVALUABLE));
       }
       else {
-        op = collateElements(within); // Recursive call
+        op = collateElements(within); /* Recursive call */
         elements.add(parvals[0], new Element(addSurroundingOperation(op, startElement, endElement), ElementType.EVALUABLE));
       }
 
@@ -791,7 +792,7 @@ public class FunctionParser {
     else if (c == '[')
       phase = ELEMENT_PARSE_PHASE_LITERAL_VECTOR_OR_MATRIX;
     else if (c == '\0')
-      forwardChar(); // Should end
+      forwardChar(); /* Should end */
     else
       throw new ParsingException(this, "Element parse failed as a result of encountering an unexpected character: '" + c + "'");
 
@@ -812,7 +813,7 @@ public class FunctionParser {
     else {
       phase = ELEMENT_PARSE_PHASE_NEW;
       if (c == '(') {
-        parsedElements.add(new Element(buffer, ElementType.FUNCTION)); // function is assume to be an opening bracket
+        parsedElements.add(new Element(buffer, ElementType.FUNCTION)); /* function is assume to be an opening bracket */
         forwardChar();
       }
       else

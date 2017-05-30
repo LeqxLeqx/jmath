@@ -27,7 +27,8 @@ import jmath.types.NVector;
 import java.util.LinkedList;
 
 /**
- * Author:    LeqxLeqx
+ * Class representing an ordered
+ * list of arguments to a function
  */
 public class ArgumentList {
 

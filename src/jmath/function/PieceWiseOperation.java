@@ -23,7 +23,8 @@ package jmath.function;
 import java.util.LinkedList;
 
 /**
- * Author:    LeqxLeqx
+ * Class for objects representing
+ * piece-wise operations
  */
 public class PieceWiseOperation extends Operation {
 

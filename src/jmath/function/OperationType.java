@@ -21,7 +21,9 @@
 package jmath.function;
 
 /**
- * Author:    LeqxLeqx
+ * An Enum for types of
+ * operations for parsed
+ * expressions
  */
 public enum OperationType {
 
@@ -29,7 +31,7 @@ public enum OperationType {
   ADDITION (2, 1),
   SUBTRACTION (2, 1),
 
-  MULTIPLICATION(2, 2), // Assumed to be inner product
+  MULTIPLICATION(2, 2), /* Assumed to be inner product */
   DIVISION(2, 2),
 
   EXPONENT (2, 3),
@@ -71,7 +73,7 @@ public enum OperationType {
   ARC_HYPERBOLIC_SECANT (1, 10),
   ARC_HYPERBOLIC_COSECANT (1, 10),
 
-  PIECE_WISE (2, 10),  // listed with argumentCount of 2, but must take an equation/inequality argument as well
+  PIECE_WISE (2, 10),  /* listed with argumentCount of 2, but must take an equation/inequality argument as well */
 
   ;
 

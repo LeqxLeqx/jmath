@@ -25,7 +25,8 @@ import jmath.function.parsing.FunctionParser;
 import java.util.LinkedList;
 
 /**
- * Author:    LeqxLeqx
+ * Class for representing an equation or
+ * comparison between two expressions
  */
 public class Equation {
 
@@ -48,6 +49,7 @@ public class Equation {
     this.right = right;
   }
 
+  @Override
   public Equation clone() {
     return new Equation(type, left.clone(), right.clone());
   }
@@ -89,7 +91,7 @@ public class Equation {
 
       }
     }
-    else // assumed to be type == EQUAL
+    else /* assumed to be type == EQUAL */
       return leftValue.getValue().equals(rightValue.getValue());
 
   }

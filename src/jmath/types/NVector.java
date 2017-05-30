@@ -24,7 +24,9 @@ import jmath.JMath;
 import jmath.tools.ArrayTools;
 
 /**
- * Author:    LeqxLeqx
+ * Class for performing vector mathematics
+ * in N dimensions. An object of this
+ * class represents as single vector
  */
 public class NVector extends IVector {
 
@@ -66,13 +68,13 @@ public class NVector extends IVector {
   public static NVector parse(String string) {
 
     if (string == null)
-      throw new IllegalArgumentException("Cannot parseEvaluable null string as a n-vector");
+      throw new IllegalArgumentException("Cannot parse null string as a n-vector");
 
     String[] split = string.split("\\,");
     double[] ret;
 
     if (!split[0].startsWith("[") || !split[split.length - 1].endsWith("]"))
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a n-vector", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a n-vector", string));
 
     split[0] = split[0].substring(1);
     split[split.length - 1] = split[split.length - 1].substring(0, split[split.length - 1].length() - 1);
@@ -84,7 +86,7 @@ public class NVector extends IVector {
         ret[k] = Double.parseDouble(split[k]);
       }
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a n-vector", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a n-vector", string));
     }
 
     return new NVector(ret);
@@ -105,7 +107,7 @@ public class NVector extends IVector {
 
 
 
-  // Add operations
+  /* Add operations */
 
   public static NVector add(IVector a, IVector b) {
     if (a == null || b == null)
@@ -137,7 +139,7 @@ public class NVector extends IVector {
 
 
 
-  // Inner product operation
+  /* Inner product operation */
 
   public static double dot(IVector a, IVector b) {
     if (a == null || b == null)
@@ -334,7 +336,7 @@ public class NVector extends IVector {
   }
 
 
-  // Unary Methods
+  /* Unary Methods */
 
   @Override
   public NVector negative() {
@@ -374,7 +376,7 @@ public class NVector extends IVector {
     return ret;
   }
 
-  // Scale operation
+  /* Scale operation */
 
   public NVector scale(double s) {
     double[] ret = values.clone();
@@ -386,12 +388,12 @@ public class NVector extends IVector {
 
 
 
-  // Subtraction methods
+  /* Subtraction methods */
 
-  public NVector subtract(IVector v) { // Alias of sub(Vector v)
+  public NVector subtract(IVector v) { /* Alias of sub(Vector v) */
     return sub(v);
   }
-  public NVector subtract(IVector... vectors) { // Alias of sub(Vector... vectors)
+  public NVector subtract(IVector... vectors) { /* Alias of sub(Vector... vectors) */
     return sub(vectors);
   }
 
@@ -413,7 +415,7 @@ public class NVector extends IVector {
   }
 
 
-  // Cross multiplication
+  /* Cross multiplication */
 
   @Override
   public IVector cross(IVector a) {

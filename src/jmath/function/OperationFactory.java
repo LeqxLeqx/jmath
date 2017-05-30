@@ -23,7 +23,8 @@ package jmath.function;
 import jmath.JMath;
 
 /**
- * Author:    LeqxLeqx
+ * A static class for getting operations from
+ * the statically allocated operation space
  */
 public /*static*/ class OperationFactory { private OperationFactory() {}
 
@@ -61,7 +62,7 @@ public /*static*/ class OperationFactory { private OperationFactory() {}
 
 
 
-  // Base Functions
+  /* Base Functions */
 
   public static Operation add(Evaluable... evaluables) {
     check(evaluables);
@@ -241,7 +242,7 @@ public /*static*/ class OperationFactory { private OperationFactory() {}
 
 
 
-  // Convenience methods
+  /* Convenience methods */
 
   public static Operation squared(Evaluable e) {
     check(e);

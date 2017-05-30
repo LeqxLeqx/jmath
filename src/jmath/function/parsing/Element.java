@@ -26,9 +26,6 @@ import jmath.types.Complex;
 import jmath.types.IMatrix;
 import jmath.types.IVector;
 
-/**
- * Author:    LeqxLeqx
- */
 class Element {
 
 

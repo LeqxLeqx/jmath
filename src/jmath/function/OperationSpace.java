@@ -23,17 +23,18 @@ package jmath.function;
 import java.util.LinkedList;
 
 /**
- * Author:    LeqxLeqx
+ * A class whose objects represent
+ * an available set of operations
  */
 public class OperationSpace {
 
   private static void addDefaultFunctions(Namespace n) {
 
-    // Binary functions
+    /* Binary functions */
     n.registerFunction(new Function("max", OperationFactory.max(new Variable("x"), new Variable("y")), new String[]{ "x", "y" }));
     n.registerFunction(new Function("min", OperationFactory.min(new Variable("x"), new Variable("y")), new String[]{ "x", "y" }));
 
-    // Unary-Misc functions
+    /* Unary-Misc functions */
     n.registerFunction(new Function("abs", OperationFactory.abs(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("sgn", OperationFactory.sgn(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("floor", OperationFactory.floor(new Variable("x")), new String[]{ "x" }));
@@ -45,7 +46,7 @@ public class OperationSpace {
     n.registerFunction(new Function("log2", OperationFactory.log2(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("ln", OperationFactory.log(new Variable("x")), new String[]{ "x" }));
 
-    // Trigonometric functions
+    /* Trigonometric functions */
     n.registerFunction(new Function("sin", OperationFactory.sin(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("cos", OperationFactory.cos(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("tan", OperationFactory.tan(new Variable("x")), new String[]{ "x" }));
@@ -53,7 +54,7 @@ public class OperationSpace {
     n.registerFunction(new Function("sec", OperationFactory.sec(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("csc", OperationFactory.csc(new Variable("x")), new String[]{ "x" }));
 
-    // Inverse-Trigonometric functions
+    /* Inverse-Trigonometric functions */
     n.registerFunction(new Function("asin", OperationFactory.asin(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("acos", OperationFactory.acos(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("atan", OperationFactory.atan(new Variable("x")), new String[]{ "x" }));
@@ -61,7 +62,7 @@ public class OperationSpace {
     n.registerFunction(new Function("asec", OperationFactory.asec(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("acsc", OperationFactory.acsc(new Variable("x")), new String[]{ "x" }));
 
-    // Hyperbolic functions
+    /* Hyperbolic functions */
     n.registerFunction(new Function("sinh", OperationFactory.sinh(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("cosh", OperationFactory.cosh(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("tanh", OperationFactory.tanh(new Variable("x")), new String[]{ "x" }));
@@ -69,7 +70,7 @@ public class OperationSpace {
     n.registerFunction(new Function("sech", OperationFactory.sech(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("csch", OperationFactory.csch(new Variable("x")), new String[]{ "x" }));
 
-    // Inverse-Hyperbolic functions
+    /* Inverse-Hyperbolic functions */
     n.registerFunction(new Function("asinh", OperationFactory.sinh(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("acosh", OperationFactory.cosh(new Variable("x")), new String[]{ "x" }));
     n.registerFunction(new Function("atanh", OperationFactory.tanh(new Variable("x")), new String[]{ "x" }));

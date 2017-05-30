@@ -24,7 +24,12 @@ import jmath.JMath;
 import jmath.tools.ArrayTools;
 
 /**
- * Author:    LeqxLeqx
+ * Class for performing mathematics
+ * with complex values. A single
+ * object of this class represents
+ * a single number which is the sum
+ * of a real number, and an imaginary
+ * number
  */
 public class Complex extends MObject {
 
@@ -51,9 +56,9 @@ public class Complex extends MObject {
 
   public static Complex parseStandardRepresentation(String string) {
     if (string == null)
-      throw new IllegalArgumentException("Cannot parseEvaluable null string as complex number");
+      throw new IllegalArgumentException("Cannot parse null string as complex number");
     if (string.length() == 0)
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a complex number", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a complex number", string));
 
     int
       firstPlus = string.indexOf("+"),
@@ -66,7 +71,7 @@ public class Complex extends MObject {
     if (
             pluses + minuses > 2 || pluses > 1
             )
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a complex number", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a complex number", string));
 
 
     if (pluses == 1)
@@ -74,7 +79,7 @@ public class Complex extends MObject {
     else if ((minuses == 1 && lastMinus != 0) || minuses == 2)
       split = lastMinus;
     else {
-      // Non split-able
+      /* Non split-able */
 
       double value;
       boolean imaginary;
@@ -88,7 +93,7 @@ public class Complex extends MObject {
       try {
         value = Double.parseDouble(string);
       } catch (NumberFormatException e) {
-        throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a complex number", string));
+        throw new IllegalArgumentException(String.format("Cannot parse '%s' as a complex number", string));
       }
 
       if (imaginary)
@@ -103,7 +108,7 @@ public class Complex extends MObject {
             end = string.substring(split + 1, string.length());
 
     if (!end.endsWith("value"))
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a complex number", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a complex number", string));
 
     end = end.substring(0, end.length() - 1);
 
@@ -113,7 +118,7 @@ public class Complex extends MObject {
       r = Double.parseDouble(start);
       i = Double.parseDouble(end);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a complex number", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a complex number", string));
     }
 
     return new Complex(r, i);
@@ -121,13 +126,13 @@ public class Complex extends MObject {
 
   public static Complex parsePolarRepresentation(String string) {
     if (string == null)
-      throw new IllegalArgumentException("Cannot parseEvaluable null string as complex number");
+      throw new IllegalArgumentException("Cannot parse null string as complex number");
 
     String[] split = string.split("e\\^");
     if (split.length != 2)
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a complex number", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a complex number", string));
     if (!split[1].endsWith("value"))
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a complex number", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a complex number", string));
 
     split[1] = split[1].substring(0, split[1].length() - 1);
 
@@ -137,7 +142,7 @@ public class Complex extends MObject {
       r = Double.parseDouble(split[0]);
       p = Double.parseDouble(split[1]);
     } catch (NumberFormatException e) {
-      throw new IllegalArgumentException(String.format("Cannot parseEvaluable '%s' as a complex number", string));
+      throw new IllegalArgumentException(String.format("Cannot parse '%s' as a complex number", string));
     }
 
     return polar(r, p);
@@ -153,7 +158,7 @@ public class Complex extends MObject {
 
 
 
-  // Addition methods
+  /* Addition methods */
 
   public static Complex add(Complex a, Complex b) {
 
@@ -193,7 +198,7 @@ public class Complex extends MObject {
   }
 
 
-  // Multiplication methods
+  /* Multiplication methods */
 
   public static Complex multiply(Complex a, Complex b) {
 
@@ -233,7 +238,9 @@ public class Complex extends MObject {
     this.imaginary = imaginary;
   }
 
-  // qualities
+
+
+  /* qualities */
 
   public boolean isReal() {
     return imaginary == 0;
@@ -249,7 +256,8 @@ public class Complex extends MObject {
   }
 
 
-  // Unary operations
+
+  /* Unary operations */
 
   public Complex negative() {
     return new Complex(-real, -imaginary);
@@ -259,7 +267,7 @@ public class Complex extends MObject {
     return new Complex(real, -imaginary);
   }
 
-  public double magnitude() { // Alias of absolute getValue
+  public double magnitude() { /* Alias of absolute getValue */
     return absoluteValue();
   }
   public double absoluteValue() {
@@ -271,12 +279,12 @@ public class Complex extends MObject {
   }
 
 
-  // Subtraction methods
+  /* Subtraction methods */
 
-  public Complex subtract(Complex c) { // Alias of sub(Complex c)
+  public Complex subtract(Complex c) { /* Alias of sub(Complex c) */
     return sub(c);
   }
-  public Complex subtract(Complex... values) { // Alias of sub(Complex... values)
+  public Complex subtract(Complex... values) { /* Alias of sub(Complex... values) */
     return sub(values);
   }
   public Complex sub(Complex c) {
@@ -307,12 +315,12 @@ public class Complex extends MObject {
   }
 
 
-  // Division methods
+  /* Division methods */
 
-  public Complex divide(Complex v) { // Alias of div(Complex v)
+  public Complex divide(Complex v) { /* Alias of div(Complex v) */
     return div(v);
   }
-  public Complex divide(Complex... values) { // Alias of div(Complex... values)
+  public Complex divide(Complex... values) { /* Alias of div(Complex... values) */
     return div(values);
   }
   public Complex div(Complex c) {
@@ -346,16 +354,16 @@ public class Complex extends MObject {
 
 
 
-  // Exponent methods
+  /* Exponent methods */
 
   public Complex squared() {
     return multiply(this, this);
   }
 
-  public Complex pow(double i) {
+  public Complex pow(double i) { /* Alias of power(double i) */
     return power(i);
   }
-  public Complex pow(Complex c) {
+  public Complex pow(Complex c) { /* Alias of power(Complex c) */
     return power(c);
   }
   public Complex power(double i) {

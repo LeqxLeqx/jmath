@@ -22,9 +22,6 @@ package jmath.function;
 
 import java.util.LinkedList;
 
-/**
- * Author:    LeqxLeqx
- */
 class VarGroup {
 
   private LinkedList<Variable> variables = new LinkedList<>();

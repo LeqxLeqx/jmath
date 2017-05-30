@@ -21,7 +21,9 @@
 package jmath.function;
 
 /**
- * Author:    LeqxLeqx
+ * An exception class for exceptions
+ * related specifically to the evaluation
+ * of operations
  */
 public class OperationException extends RuntimeException {
 

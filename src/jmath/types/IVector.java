@@ -21,7 +21,8 @@
 package jmath.types;
 
 /**
- * Author:    LeqxLeqx
+ * Vector class from which both
+ * Vector and NVector inherit.
  */
 public abstract class IVector extends MObject {
 
@@ -57,7 +58,7 @@ public abstract class IVector extends MObject {
   public abstract double[] toArray();
 
 
-  // Unary operations
+  /* Unary operations */
 
   public abstract IVector negative();
   public abstract IVector normalize();
@@ -67,7 +68,7 @@ public abstract class IVector extends MObject {
 
   public abstract boolean equals(IVector vector);
 
-  // Binary operations
+  /* Binary operations */
 
   public abstract IVector scale(double s);
   public abstract IVector sub(IVector vector);
