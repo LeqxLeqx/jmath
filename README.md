@@ -16,7 +16,7 @@ Including:
 
 To build, run:
 
-  ./build.sh
+	./build.sh
 
 This will create a jar in the root directory
 of the cloned repository with the name 'jmath.jar'
