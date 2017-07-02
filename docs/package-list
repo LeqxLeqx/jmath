@@ -1,5 +1,6 @@
 jmath
 jmath.function
 jmath.function.parsing
+jmath.graph
 jmath.tools
 jmath.types
