@@ -484,6 +484,47 @@ public /*static*/ class ArrayTools { private ArrayTools() {  }
   }
 
 
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   *
+   * @param array array to be shuffled
+   */
+  public static void shuffle(char[] array) {
+    shuffle(array, new Random());
+  }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with a new java.util.Random object
+   * created from the provided seed
+   *
+   * @param array array to be shuffled
+   * @param seed the seed to use for the pseudo-random number generator
+   */
+  public static void shuffle(char[] array, long seed) {
+    shuffle(array, new Random(seed));
+  }
+  /**
+   *
+   * Performs a Fisher-Yates shuffle on the
+   * given array with the provided java.util.Random
+   * object
+   *
+   * @param array array to be shuffled
+   * @param random the random object to use
+   */
+  public static void shuffle(char[] array, Random random) {
+
+    for(int k = array.length - 1; k > 0; k--) {
+      int j = random.nextInt(k);
+
+      exchange(array, j, k);
+    }
+  }
+
+
 
 
 
@@ -581,6 +622,19 @@ public /*static*/ class ArrayTools { private ArrayTools() {  }
 
   }
 
+  public static void exchange(char[] array, int i0, int i1) {
+
+    if (i0 < 0 || i0 >= array.length)
+      throw new IllegalArgumentException(String.format("Index '%s' out of bounds", i0));
+    if (i1 < 0 || i1 >= array.length)
+      throw new IllegalArgumentException(String.format("Index '%s' out of bounds", i1));
+
+    char trans = array[i0];
+    array[i0] = array[i1];
+    array[i1] = trans;
+
+  }
+
 
 
   public static <T> void reverse(T[] array) {
@@ -625,6 +679,12 @@ public /*static*/ class ArrayTools { private ArrayTools() {  }
     }
   }
 
+  public static void reverse(char[] array) {
+    for(int k = 0; k < (double) array.length / 2; k++) {
+      exchange(array, k, array.length - 1 - k);
+    }
+  }
+
 
   public static <T> void fill(T[] array, T value) {
     for(int k = 0; k < array.length; k++) {
@@ -659,6 +719,11 @@ public /*static*/ class ArrayTools { private ArrayTools() {  }
     }
   }
   public static void fill(double[] array, double value) {
+    for(int k = 0; k < array.length; k++) {
+      array[k] = value;
+    }
+  }
+  public static void fill(char[] array, char value) {
     for(int k = 0; k < array.length; k++) {
       array[k] = value;
     }
@@ -700,6 +765,11 @@ public /*static*/ class ArrayTools { private ArrayTools() {  }
     }
   }
   public static void fill(double[] array, DoubleArrayFillInterface filler) {
+    for(int k = 0; k < array.length; k++) {
+      array[k] = filler.get(k);
+    }
+  }
+  public static void fill(char[] array, CharArrayFillInterface filler) {
     for(int k = 0; k < array.length; k++) {
       array[k] = filler.get(k);
     }
@@ -1056,6 +1126,15 @@ public /*static*/ class ArrayTools { private ArrayTools() {  }
 
     return ret;
   }
+  public static Character[] toWrapperArray(char[] array) {
+    Character[] ret = new Character[array.length];
+
+    for(int k = 0; k < array.length; k++) {
+      ret[k] = new Character(array[k]);
+    }
+
+    return ret;
+  }
 
 
 
@@ -1110,6 +1189,15 @@ public /*static*/ class ArrayTools { private ArrayTools() {  }
 
     for(int k = 0; k < array.length; k++) {
       ret[k] = array[k].doubleValue();
+    }
+
+    return ret;
+  }
+  public static char[] toPrimitiveArray(Character[] array) {
+    char[] ret = new char[array.length];
+
+    for(int k = 0; k < array.length; k++) {
+      ret[k] = array[k].charValue();
     }
 
     return ret;
@@ -1216,6 +1304,19 @@ public /*static*/ class ArrayTools { private ArrayTools() {  }
   public static double[] concat(double[] a1, double[] a2) {
 
     double[] ret = new double[a1.length + a2.length];
+
+    for(int k = 0; k < a1.length; k++) {
+      ret[k] = a1[k];
+    }
+    for(int k = 0; k < a2.length; k++) {
+      ret[k + a1.length] = a2[k];
+    }
+
+    return ret;
+  }
+  public static char[] concat(char[] a1, char[] a2) {
+
+    char[] ret = new char[a1.length + a2.length];
 
     for(int k = 0; k < a1.length; k++) {
       ret[k] = a1[k];
