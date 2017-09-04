@@ -49,6 +49,7 @@ public /*static*/ class JMath { private JMath() {}
           ;
 
 
+
   /* Absolute getValue functions */
 
   /**
