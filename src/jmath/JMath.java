@@ -49,6 +49,20 @@ public /*static*/ class JMath { private JMath() {}
           ;
 
 
+  /* Version */
+
+  public static final int
+          RELEASE_VERSION = 1,
+          MAJOR_VERSION = 4,
+          MINOR_VERSION = 2
+          ;
+
+
+  public static String getVersion() {
+    return String.format("%d.%d.%d", RELEASE_VERSION, MAJOR_VERSION, MINOR_VERSION);
+  }
+
+
 
   /* Absolute getValue functions */
 
