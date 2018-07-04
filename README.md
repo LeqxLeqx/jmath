@@ -9,9 +9,7 @@ Including:
 - Complex analysis
 - Fixed-point decimal representations
 - Array tools
-- Function parsing and evaluation
 - Graph theory analysis
-
 
 
 To build, run:
@@ -23,3 +21,7 @@ of the cloned repository with the name 'jmath.jar'
 
 
 Still in the process of adding more javadocs and comments
+
+#dependancy note(s)
+this library is now depended upon Upsilon, available at 
+https://github.com/LeqxLeqx/upsilon
