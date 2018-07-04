@@ -20,7 +20,7 @@
 
 package jmath.types;
 
-import jmath.tools.ArrayTools;
+import upsilon.tools.ArrayTools;
 
 /**
  * A class for performing matrix mathematics.

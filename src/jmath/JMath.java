@@ -21,7 +21,6 @@
 package jmath;
 
 
-import jmath.function.*;
 import jmath.types.*;
 
 import java.util.Arrays;
@@ -53,8 +52,8 @@ public /*static*/ class JMath { private JMath() {}
 
   public static final int
           RELEASE_VERSION = 1,
-          MAJOR_VERSION = 4,
-          MINOR_VERSION = 2
+          MAJOR_VERSION = 5,
+          MINOR_VERSION = 1
           ;
 
 
@@ -2906,6 +2905,34 @@ public /*static*/ class JMath { private JMath() {}
 
   /* Misc */
 
+  /**
+   * Calculates the specular reflection vector
+   * produced by reflecting the incoming incident
+   * vector from a surface with the provided normal
+   *
+   * @param normal normal vector of the reflecting surface
+   * @param incident the vector from the source to the surface
+   * @return the specular reflection vector
+   */
+  public static Vector specular(Vector normal, Vector incident) {
+
+    if (normal == null)
+      throw new IllegalArgumentException("Normal vector cannot be null");
+    if (incident == null)
+      throw new IllegalArgumentException("Incident vector cannot be null");
+
+    return Vector.add(
+                normal.scale(
+                    2 * Vector.dot(
+                        normal,
+                        incident.negative()
+                    )
+                ),
+                incident
+            );
+
+  }
+
 
 
   /**
@@ -4078,310 +4105,6 @@ public /*static*/ class JMath { private JMath() {}
   }
 
 
-  /* Calculus */
-
-  /**
-   *
-   * performs rectangular approximation
-   * on the given expression over the provided
-   * domain with n^x many rectangles where x is
-   * the dimensionality of the expression and domain
-   *
-   * @param expression the expression on which to integrate
-   * @param domain the domain over which to integrate
-   * @param n the number of rectangles
-   * @return the area under the expression
-   */
-  public static double rectangularApproximationMethod(
-          Expression expression,
-          Domain domain,
-          int n
-          ) {
-
-    if (expression == null)
-      throw new IllegalArgumentException("Expression cannot be null");
-    if (domain == null)
-      throw new IllegalArgumentException("Domain cannot be null");
-    if (n <= 0)
-      throw new IllegalArgumentException("N must be positive");
-
-    String[] variableArray = expression.variableList();
-    for(String variable : variableArray) {
-      if(!domain.hasDimension(variable))
-        throw new IllegalArgumentException(String.format("Domain does not define bounds for variable '%s'", variable));
-    }
-
-    class Multi {
-
-      int[] array;
-      int n;
-      boolean completed = false;
-
-      Multi(int width, int n) {
-        array = new int[width];
-        this.n = n;
-      }
-
-      boolean complete() {
-        return completed;
-      }
-
-      void incriment() {
-        for(int k = 0; k < array.length; k++) {
-          array[k]++;
-          if (array[k] >= n)
-            array[k] = 0;
-          else
-            return;
-        }
-
-        completed = true;
-      }
-
-    }
-
-    double ret = 0;
-
-
-    double hyperArea = 1;
-    double[] intervals = new double[variableArray.length];
-    for(int k = 0; k < intervals.length; k++) {
-      intervals[k] = (domain.getUpper(variableArray[k]) - domain.getLower(variableArray[k])) / n;
-      hyperArea *= intervals[k];
-    }
-
-    for(Multi multi = new Multi(variableArray.length, n); !multi.complete(); multi.incriment()) {
-
-      double[] positions = new double[variableArray.length];
-
-      for(int k = 0; k < variableArray.length; k++) {
-        positions[k] = domain.getLower(variableArray[k]) + intervals[k] * (multi.array[k] + 0.5);
-      }
-
-      try {
-        double value = expression.evaluate(positions);
-        ret += hyperArea * value;
-        continue;
-      } catch (EvaluationException e) {}
-      try {
-        Complex value = expression.evaluate(positions);
-        ret += hyperArea * value.real;
-        continue;
-      } catch (EvaluationException e) {}
-
-      throw new ArithmeticException("Expression returned an invalid type");
-    }
-
-    return ret;
-  }
-
-  /**
-   *
-   * Performs rectangular approximation on
-   * the given expression from 'start' to 'end'.
-   * Note this expression must contain only one variable
-   *
-   * @param expression the expression on which to integrate
-   * @param start the start of the domain
-   * @param end the end of the domain
-   * @param n the number of rectangles
-   * @return the area under the expression
-   */
-  public static double rectangularApproximationMethod(
-          Expression expression,
-          double start, double end,
-          int n
-          ) {
-
-    if (end == start)
-      return 0;
-    else if (end < start)
-      return -rectangularApproximationMethod(expression, end, start, n);
-
-    double
-            difference = end - start,
-            interval = difference / n,
-            ret = 0
-        ;
-
-    for(int k = 0; k < n; k++) {
-
-      double position = start + ((double) k + .5) * interval;
-      try {
-        double value = expression.evaluate(position);
-        ret += interval * value;
-        continue;
-      } catch (EvaluationException e) {}
-      try {
-        Complex value = expression.evaluate(position);
-        ret += interval * value.real;
-        continue;
-      } catch (EvaluationException e) {}
-
-
-      throw new ArithmeticException("Expression returned an invalid type");
-    }
-
-    return ret;
-  }
-
-
-  /**
-   *
-   * Performs newton's approximation method on
-   * the given expression with the given
-   * start value, and the number of rounds
-   *
-   * @param expression the to be zeroed
-   * @param rounds the number of rounds to operate over
-   * @param start the start value of the method
-   * @return the calculated zero of the expression
-   */
-  public static double newtonMethod(
-          Expression expression,
-          int rounds,
-          double start
-          ) {
-    if (expression == null)
-      throw new IllegalArgumentException("Expression cannot be null");
-    String[] variableList = expression.variableList();
-    if (variableList.length != 1)
-      throw new IllegalArgumentException("Expression must contain exactly one variable");
-    if (rounds <= 0)
-      throw new IllegalArgumentException("Round count must be positive");
-
-
-    Evaluable op = expression.getEvaluable();
-    if (op.getEvaluableType() == EvaluableType.OPERATION)
-      op = ((Operation) op).simplify();
-
-    Evaluable derrivative = op.derivative(variableList[0]);
-    if (derrivative.getEvaluableType() == EvaluableType.OPERATION)
-      derrivative = ((Operation) derrivative).simplify();
-
-
-    Expression newtonian = new Expression(
-            OperationFactory.sub(
-                    new Variable(variableList[0]),
-                    OperationFactory.div(
-                            op,
-                            derrivative
-                    )
-            )
-     );
-
-    for(int k = 0; k < rounds; k++) {
-      start = newtonian.evaluate(start);
-    }
-
-    return start;
-  }
-
-  /**
-   *
-   * Performs secant approximation method on
-   * the given expression with the given
-   * start values, and the number of rounds
-   *
-   * @param expression the expression to be zeroed
-   * @param rounds the number of rounds to operate over
-   * @param s0 the first start value
-   * @param s1 the second start value
-   * @return the calculated zero of the expression
-   */
-  public static double secantMethod(
-          Expression expression,
-          int rounds,
-          double s0,
-          double s1
-          ) {
-    if (expression == null)
-      throw new IllegalArgumentException("Expression cannot be null");
-    String[] variableList = expression.variableList();
-    if (variableList.length != 1)
-      throw new IllegalArgumentException("Expression must contain exactly one variable");
-    if (rounds <= 0)
-      throw new IllegalArgumentException("Round count must be positive");
-    if (s0 == s1)
-      throw new IllegalArgumentException("Starts cannot be equal");
-
-    String v1 = variableList[0], v2 = v1 + "_";
-
-    Evaluable e1 = expression.getEvaluable();
-    if (e1.getEvaluableType() == EvaluableType.OPERATION)
-      e1 = ((Operation) e1).simplify();
-
-    Expression secant = new Expression(
-            OperationFactory.sub(
-                    new Variable(v1),
-                    OperationFactory.mul(
-                            e1,
-                            OperationFactory.div(
-                                    OperationFactory.sub(
-                                            new Variable(v1),
-                                            new Variable(v2)
-                                    ),
-                                    OperationFactory.sub(
-                                            e1,
-                                            e1.replaceVariable(v1, new Variable(v2))
-                                    )
-                            )
-                    )
-            )
-    );
-
-    for(int k = 0; k < rounds && s0 != s1; k++) {
-      double s_ = secant.evaluate(ArgumentList.create("%s = %s; %s = %s", v1, s0, v2, s1));
-      s1 = s0;
-      s0 = s_;
-    }
-
-    return s0;
-  }
-
-  /**
-   *
-   * Find the root using the provided method
-   *
-   * @param zeroMethod the method to use
-   * @param expression the expression to zero
-   * @param rounds the number of rounds
-   * @param start the start values
-   * @return the calculated zero of the method
-   */
-  public static double findRoot(
-          ZeroMethod zeroMethod,
-          Expression expression,
-          int rounds,
-          double... start
-          ) {
-    if (expression == null)
-      throw new IllegalArgumentException("Expression cannot be null");
-    String[] variableList = expression.variableList();
-    if (variableList.length != 1)
-      throw new IllegalArgumentException("Expression must contain exactly one variable");
-    if (rounds <= 0)
-      throw new IllegalArgumentException("Round count must be positive");
-    if (zeroMethod == null)
-      zeroMethod = ZeroMethod.NEWTON_METHOD;
-    if (start == null)
-      throw new IllegalArgumentException("Starts array cannot be null");
-    if (start.length != zeroMethod.requiredStarts)
-      throw new IllegalArgumentException(String.format("Selected zeroing method requires %s starting values", zeroMethod.requiredStarts));
-
-    switch (zeroMethod) {
-      case NEWTON_METHOD:
-        return newtonMethod(expression, rounds, start[0]);
-      case SECANT_METHOD:
-        return secantMethod(expression, rounds, start[0], start[1]);
-
-      default:
-        throw new RuntimeException();
-
-    }
-
-
-  }
 
 
 
@@ -4393,27 +4116,6 @@ public /*static*/ class JMath { private JMath() {}
       throw new IllegalArgumentException("Argument cannot be null");
   }
 
-
-  /**
-   *
-   * An enumeration for the zeroing methods
-   * implemented in the JMath class
-   *
-   */
-  public enum ZeroMethod {
-
-    NEWTON_METHOD (1),
-    SECANT_METHOD (2),
-
-    ;
-
-    private final int requiredStarts;
-
-    ZeroMethod (int requiredStarts) {
-      this.requiredStarts = requiredStarts;
-    }
-
-  }
 
 
 

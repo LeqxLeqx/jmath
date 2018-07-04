@@ -1,12 +1,10 @@
 package jmath;
 
-import jmath.tools.ArrayTools;
+import upsilon.tools.ArrayTools;
 import jmath.types.Complex;
 import jmath.types.Fixed;
 import jmath.types.IVector;
 import jmath.types.Vector;
-
-import java.util.Arrays;
 
 /**
  * A static class for various statistical operations
@@ -25,6 +23,8 @@ public /*static*/ class JStats { private JStats() {  }
   public static double average(double... values) {
     if (values == null)
       throw new IllegalArgumentException("Values array cannot be null");
+    else if (values.length == 0)
+      throw new IllegalArgumentException("Values array must contain at least one value");
 
     double total = 0;
     for(double v : values) {
@@ -44,8 +44,10 @@ public /*static*/ class JStats { private JStats() {  }
   public static Complex average(Complex... values) {
     if (values == null)
       throw new IllegalArgumentException("Values array cannot be null");
-    if (Arrays.asList(values).contains(null))
+    if (ArrayTools.containsNull(values))
       throw new IllegalArgumentException("Values array cannot contain nulls");
+    else if (values.length == 0)
+      throw new IllegalArgumentException("Values array must contain at least one value");
 
     return Complex.add(values).div(Complex.real(values.length));
   }
@@ -60,12 +62,14 @@ public /*static*/ class JStats { private JStats() {  }
   public static Fixed average(Fixed... values) {
     if (values == null)
       throw new IllegalArgumentException("Values array cannot be null");
-    if (Arrays.asList(values).contains(null))
+    if (ArrayTools.containsNull(values))
       throw new IllegalArgumentException("Values array cannot contain nulls");
+    else if (values.length == 0)
+      throw new IllegalArgumentException("Values array must contain at least one value");
+
 
     return Fixed.add(values).div(new Fixed(values.length));
   }
-
   /**
    *
    * Returns the vector average of the range of Vectors provided
@@ -76,8 +80,11 @@ public /*static*/ class JStats { private JStats() {  }
   public static Vector average(Vector... values) {
     if (values == null)
       throw new IllegalArgumentException("Values array cannot be null");
-    if (Arrays.asList(values).contains(null))
+    if (ArrayTools.containsNull(values))
       throw new IllegalArgumentException("Values array cannot contain nulls");
+    else if (values.length == 0)
+      throw new IllegalArgumentException("Values array must contain at least one value");
+
 
     return Vector.add(values).scale(1.0 / values.length);
   }
@@ -124,7 +131,7 @@ public /*static*/ class JStats { private JStats() {  }
       throw new IllegalArgumentException("Values array cannot be null");
     if (weight == null)
       throw new IllegalArgumentException("Weight array cannot be null");
-    if (Arrays.asList(values).contains(null))
+    if (ArrayTools.containsNull(values))
       throw new IllegalArgumentException("Values array cannot contain nulls");
     if (values.length != weight.length)
       throw new IllegalArgumentException(String.format("Array length mismatch (%d != %d)", values.length, weight.length));
@@ -153,7 +160,7 @@ public /*static*/ class JStats { private JStats() {  }
       throw new IllegalArgumentException("Values array cannot be null");
     if (weight == null)
       throw new IllegalArgumentException("Weight array cannot be null");
-    if (Arrays.asList(values).contains(null))
+    if (ArrayTools.containsNull(values))
       throw new IllegalArgumentException("Values array cannot contain nulls");
     if (values.length != weight.length)
       throw new IllegalArgumentException(String.format("Array length mismatch (%d != %d)", values.length, weight.length));
@@ -182,7 +189,7 @@ public /*static*/ class JStats { private JStats() {  }
       throw new IllegalArgumentException("Values array cannot be null");
     if (weight == null)
       throw new IllegalArgumentException("Weight array cannot be null");
-    if (Arrays.asList(values).contains(null))
+    if (ArrayTools.containsNull(values))
       throw new IllegalArgumentException("Values array cannot contain nulls");
     if (values.length != weight.length)
       throw new IllegalArgumentException(String.format("Array length mismatch (%d != %d)", values.length, weight.length));
@@ -277,8 +284,10 @@ public /*static*/ class JStats { private JStats() {  }
    * Calculates the covariance between the 'x' and 'y' values of
    * the provided vector array
    *
+	 * @param <T> type of the values within the array
+
    * @param values the values array
-   * @return the covariance between the vectors
+	 * @return the covariance between the vectors
    */
   public static <T extends IVector> double covariance(T... values) {
     if (values == null)
@@ -358,11 +367,12 @@ public /*static*/ class JStats { private JStats() {  }
 
   /**
    *
-   * Calculates the pearson correlation between the values
+   * Calculates the Pearson correlation between the values
    * of the vector array
    *
+	 * @param <T> the type of values within the array
    * @param values the vector array
-   * @return the pearson 'r' correlation coefficient
+   * @return the Pearson 'r' correlation coefficient
    */
   public static <T extends IVector> double r(T... values) {
     return pearsonCorrelation(values);
@@ -370,10 +380,11 @@ public /*static*/ class JStats { private JStats() {  }
 
   /**
    *
-   * Calculates the pearson correlation between the values
+   * Calculates the Pearson correlation between the values
    *
+	 * @param <T> the type of values within the array
    * @param values the vector array
-   * @return the pearson 'r' correlation coefficient
+   * @return the Pearson 'r' correlation coefficient
    */
   public static <T extends IVector> double pearsonCorrelation(T... values) {
     if (values == null)

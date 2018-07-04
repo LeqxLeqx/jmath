@@ -20,7 +20,7 @@
 
 package jmath.graph;
 
-import jmath.tools.ArrayTools;
+import upsilon.tools.ArrayTools;
 
 import java.util.Collections;
 import java.util.LinkedList;

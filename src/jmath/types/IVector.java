@@ -78,6 +78,11 @@ public abstract class IVector extends MObject {
 
   public abstract IVector cross(IVector a);
 
+  public abstract IVector proj(IVector vector);
+  public abstract IVector projection(IVector vector);
+  public abstract double sproj(IVector vector);
+  public abstract double scalarProjection(IVector vector);
+
 
 
   public abstract NVector toNVector();

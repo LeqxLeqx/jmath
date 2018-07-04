@@ -21,7 +21,7 @@
 package jmath.types;
 
 import jmath.JMath;
-import jmath.tools.ArrayTools;
+import upsilon.tools.ArrayTools;
 
 /**
  * Class for performing mathematics

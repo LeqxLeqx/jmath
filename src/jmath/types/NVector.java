@@ -21,7 +21,7 @@
 package jmath.types;
 
 import jmath.JMath;
-import jmath.tools.ArrayTools;
+import upsilon.tools.ArrayTools;
 
 /**
  * Class for performing vector mathematics
@@ -128,11 +128,11 @@ public class NVector extends IVector {
 
     double[] ret = new double[vectors[0].dimension()];
 
-    for(int k = 0; k < vectors.length; k++) {
-      for(int i = 0; i < vectors[k].dimension(); i++) {
-        ret[i] += vectors[k].get(i);
-      }
-    }
+		for (IVector vector : vectors) {
+			for (int i = 0; i < vector.dimension(); i++) {
+				ret[i] += vector.get(i);
+			}
+		}
 
     return new NVector(ret);
   }
@@ -161,13 +161,13 @@ public class NVector extends IVector {
 
     double ret = 0;
 
-    for(int k = 0; k < vectors.length; k++) {
-      double subRet = 1;
-      for(int i = 0; i < vectors[k].dimension(); i++) {
-        subRet *= vectors[k].get(i);
-      }
-      ret += subRet;
-    }
+		for (IVector vector : vectors) {
+			double subRet = 1;
+			for (int i = 0; i < vector.dimension(); i++) {
+				subRet *= vector.get(i);
+			}
+			ret += subRet;
+		}
 
     return ret;
   }
@@ -376,33 +376,38 @@ public class NVector extends IVector {
     return ret;
   }
 
-  /* Scale operation */
+  /* Scale operat ion */
 
+	@Override
   public NVector scale(double s) {
     double[] ret = values.clone();
     for(int k = 0; k < ret.length; k++) {
       ret[k] *= s;
     }
-    return new NVector(ret);
+    return new NVector(ret); 
   }
 
 
 
   /* Subtraction methods */
 
+	@Override
   public NVector subtract(IVector v) { /* Alias of sub(Vector v) */
     return sub(v);
   }
+	@Override
   public NVector subtract(IVector... vectors) { /* Alias of sub(Vector... vectors) */
     return sub(vectors);
   }
 
+	@Override
   public NVector sub(IVector v) {
     if (v == null)
       throw new IllegalArgumentException("Vector addition cannot operate on null values");
 
     return add(this, v.negative());
   }
+	@Override
   public NVector sub(IVector... vectors) {
     checkArray(vectors, dimension());
 
@@ -418,8 +423,48 @@ public class NVector extends IVector {
   /* Cross multiplication */
 
   @Override
-  public IVector cross(IVector a) {
+  public NVector cross(IVector a) {
     return cross(new IVector[] { a });
+  }
+
+  @Override
+  public IVector proj(IVector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+    if (vector.dimension() != dimension())
+      throw new IllegalArgumentException("Dimensional mismatch for projection operation");
+
+    return vector.normalize().scale(sproj(vector));
+  }
+
+  @Override
+  public IVector projection(IVector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+    if (vector.dimension() != dimension())
+      throw new IllegalArgumentException("Dimensional mismatch for projection operation");
+
+    return proj(vector);
+  }
+
+  @Override
+  public double sproj(IVector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+    if (vector.dimension() != dimension())
+      throw new IllegalArgumentException("Dimensional mismatch for projection operation");
+
+    return dot(this, vector.normalize());
+  }
+
+  @Override
+  public double scalarProjection(IVector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+    if (vector.dimension() != dimension())
+      throw new IllegalArgumentException("Dimensional mismatch for projection operation");
+
+    return sproj(vector);
   }
 
 
@@ -430,13 +475,13 @@ public class NVector extends IVector {
 
     Object[] array = new Object[dimension() * dimension()];
     for(int k = 0; k < dimension(); k++) {
-      array[k] = new Double(get(k));
+      array[k] = get(k);
     }
 
     int top = dimension();
     for(IVector vector : vectors) {
       for(double d : vector.toArray()) {
-        array[top++] = new Double(d);
+        array[top++] = d;
       }
     }
 
@@ -457,6 +502,16 @@ public class NVector extends IVector {
     else
       return false;
   }
+
+	@Override
+	public int hashCode() {
+		long value = 1;
+		for (int k = 0; k < values.length; k++) {
+			value *= Double.doubleToLongBits(values[k]);
+		}
+		
+		return (int) value;
+	}
 
   @Override
   public boolean equals(IVector vector) {

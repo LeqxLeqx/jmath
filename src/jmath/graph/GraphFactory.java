@@ -20,7 +20,7 @@
 
 package jmath.graph;
 
-import jmath.tools.ArrayTools;
+import upsilon.tools.ArrayTools;
 import jmath.types.Vector;
 
 /**

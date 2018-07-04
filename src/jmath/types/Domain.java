@@ -20,8 +20,6 @@
 
 package jmath.types;
 
-import jmath.function.Variable;
-
 import java.util.Arrays;
 
 /**
@@ -30,6 +28,35 @@ import java.util.Arrays;
  * at least one dimension
  */
 public class Domain {
+
+	private static boolean nameIsValid(String string) {
+		char c;
+
+		if (string.length() == 0)
+			return false;
+
+		c = string.charAt(0);
+
+		if (
+		  c != '_' &&
+			!(c >= 'a' && c <= 'z') &&
+			!(c >= 'A' && c <= 'Z')
+			)
+			return false;
+		
+		for (int k = 1; k < string.length(); k++) {
+			c = string.charAt(k);
+			if (
+				c != '_' &&
+				!(c >= 'a' && c <= 'z') &&
+				!(c >= 'A' && c <= 'Z') &&
+				!(c >= '0' && c <= '9')
+				)
+				return false;
+		}
+
+		return true;
+	}
 
   public static Domain parse(String string) {
     if (string == null)
@@ -145,7 +172,7 @@ public class Domain {
       throw new IllegalArgumentException("Boundary condition array cannot contain nulls");
 
     for(String name : names) {
-      if (!Variable.isNameValid(name) && !name.isEmpty())
+      if (!nameIsValid(name) && !name.isEmpty())
         throw new IllegalArgumentException(String.format("Dimension name '%s' is invalid", name));
     }
 

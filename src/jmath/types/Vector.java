@@ -21,7 +21,7 @@
 package jmath.types;
 
 import jmath.JMath;
-import jmath.tools.ArrayTools;
+import upsilon.tools.ArrayTools;
 
 /**
  * Class for performing vector mathematics
@@ -290,15 +290,15 @@ public class Vector extends IVector{
     if (ArrayTools.containsNull(vectors))
       throw new IllegalArgumentException("Vector array cannot contain null");
 
-    double x = this.x, y = this.y, z = this.z;
+    double vx = this.x, vy = this.y, vz = this.z;
 
     for(Vector v : vectors) {
-      x -= v.x;
-      y -= v.y;
-      z -= v.z;
+      vx -= v.x;
+      vy -= v.y;
+      vz -= v.z;
     }
 
-    return new Vector(x, y, z);
+    return new Vector(vx, vy, vz);
   }
 
 
@@ -310,6 +310,66 @@ public class Vector extends IVector{
       throw new IllegalArgumentException("Vector outer product cannot operate on null values");
 
     return cross(a.toVector());
+  }
+
+  @Override
+  public Vector proj(IVector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+
+    return proj(vector.toVector());
+  }
+
+  @Override
+  public Vector projection(IVector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+
+    return proj(vector.toVector());
+  }
+
+  @Override
+  public double sproj(IVector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+
+    return sproj(vector.toVector());
+  }
+
+  @Override
+  public double scalarProjection(IVector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+
+    return sproj(vector.toVector());
+  }
+
+  public Vector proj(Vector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+
+    return vector.normalize().scale(sproj(vector));
+  }
+
+  public Vector projection(Vector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+
+    return proj(vector);
+  }
+
+  public double sproj(Vector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector cannot be null");
+
+    return dot(this, vector.normalize());
+  }
+
+  public double scalarProjection(Vector vector) {
+    if (vector == null)
+      throw new IllegalArgumentException("Vector projection cannot operate on null values");
+
+    return sproj(vector);
   }
 
 
@@ -361,7 +421,6 @@ public class Vector extends IVector{
     else
       return false;
   }
-
 
   public boolean equals(Vector v) {
     if (v == null)

@@ -26,6 +26,9 @@ if [[ $1 == "clean" ]] ; then
   exit 0
 fi
 
+original_classpath=$CLASSPATH
+export CLASSPATH=$PWD/lib/upsilon-0.1.3.jar
+
 if [[ !(-e bin) ]] ; then
   mkdir bin
 fi
@@ -76,5 +79,7 @@ cd ..
 echo Removing transient resources...
 rm -f bin/Manifest.txt javac.out jar.out `find . -name *.class`
 echo Done
+
+export CLASSPATH=$original_classpath
 
 
